@@ -232,7 +232,7 @@ vmux/                              # Xcode project root
   - **Acceptance**: `import Citadel` and `import SwiftTerm` compile in a temporary file inside `vmux/`. Build still passes for visionOS simulator.
   - **Depends on**: T-001
 
-- [ ] **T-003 — Privacy & entitlements**
+- [x] **T-003 — Privacy & entitlements**
   - **Why**: Mic capture requires an Info.plist string or the app crashes on first use. Apple's Speech framework is **not** used (Gemini Live API replaces it), so `NSSpeechRecognitionUsageDescription` is intentionally omitted.
   - **Do**: Add to `Info.plist`:
     - `NSMicrophoneUsageDescription` = "vmux uses the microphone to dictate commands into your focused terminal via Google Gemini."
