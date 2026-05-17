@@ -318,7 +318,7 @@ vmux/                              # Xcode project root
   - **Acceptance**: Manual: hovering between two open terminals updates `FocusStore.focusedTabID`. Window with current focus shows a subtle blue border glow.
   - **Depends on**: T-012
 
-- [ ] **T-016a — GeminiLiveClient (WebSocket + setup)**
+- [x] **T-016a — GeminiLiveClient (WebSocket + setup)**
   - **Why**: Talk to the Gemini Live API over the documented bidi WebSocket using only `URLSessionWebSocketTask`. No SDK.
   - **Do**: Implement `actor GeminiLiveSession` with an `AsyncStream<TranscriptEvent>` output and an `async func sendAudio(_ pcm16: Data)` input. On `init(apiKey:, model:)`, open a `URLSessionWebSocketTask` to `wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1beta.GenerativeService.BidiGenerateContent?key=<apiKey>`. Send the setup JSON from §4.4 step 2 (with the configured model and `inputAudioTranscription: {}` + `responseModalities: ["TEXT"]`). Wait for `setupComplete` from the server before becoming ready. Start a receive-loop task that parses each server frame and, for any `serverContent.inputTranscription.text` value, yields `TranscriptEvent.partial(text)`. `sendAudio` base64-encodes and sends `{"realtimeInput":{"audio":{"data":"<b64>","mimeType":"audio/pcm;rate=16000"}}}`. Provide `close()` to cleanly terminate. Implement exponential backoff reconnect on unexpected close (250 ms → 4 s).
   - **Acceptance**: Unit test against a stubbed `URLSessionWebSocketTask` (or fake URL session) asserts the setup message body is correct and that received `inputTranscription` frames produce `TranscriptEvent.partial` values. Manual: with a real key, opening a session reaches `setupComplete` within 2 s.
