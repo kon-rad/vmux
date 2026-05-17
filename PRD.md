@@ -292,7 +292,7 @@ vmux/                              # Xcode project root
   - **Acceptance**: Unit test: feed bytes into a stubbed channel, assert terminal buffer contains them; calling `send` writes bytes to the stub.
   - **Depends on**: T-010
 
-- [ ] **T-012 — SwiftTerm SwiftUI bridge + TerminalWindowView**
+- [x] **T-012 — SwiftTerm SwiftUI bridge + TerminalWindowView**
   - **Why**: Render the terminal in a window.
   - **Do**: `UIViewRepresentable` wrapping SwiftTerm's `TerminalView`. `TerminalWindowView(tabID:)` looks up the `Tab` in SwiftData, lazily creates/fetches a `TerminalSession` from a `@MainActor` `TerminalSessionRegistry` (one per `Tab.id`), embeds the bridge view. Closing the **window** (X button) does **not** kill the session — it remains in the registry so reopening continues from where it was. Closing the **tab from the sidebar** (swipe/context-menu delete) DOES tear down: kill the session, remove from registry, delete the `Tab` from SwiftData, close any open window for that ID via `dismissWindow(id:value:)`. Sidebar `+ New Tab` inserts a new `Tab` and calls `openWindow(id: "terminal", value: tab.id)`.
   - **Acceptance**: Open a tab against a real SSH server, type commands, see output. Close + reopen the **window** — session continues. Delete the **tab** from sidebar — session ends, window closes, Tab gone after relaunch.

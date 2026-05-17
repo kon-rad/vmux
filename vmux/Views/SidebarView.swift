@@ -3,6 +3,7 @@ import SwiftData
 
 struct SidebarView: View {
     @Environment(\.openWindow) private var openWindow
+    @Environment(\.dismissWindow) private var dismissWindow
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \Project.createdAt) private var projects: [Project]
     @Query private var allTabs: [Tab]
@@ -116,18 +117,44 @@ struct SidebarView: View {
     }
 
     private func addTab(in project: Project) {
-        _ = project
+        let existing = visibleTabs.count + 1
+        let tab = Tab(
+            title: "Tab \(existing)",
+            project: project
+        )
+        modelContext.insert(tab)
+        do {
+            try modelContext.save()
+        } catch {
+            // Discard insert if SwiftData fails; nothing to clean up since no
+            // external resources were allocated yet.
+            modelContext.delete(tab)
+            return
+        }
+        openWindow(id: "terminal", value: tab.id)
     }
 
     private func deleteProject(_ project: Project) {
+        let tabIDs = project.tabs.map(\.id)
         if selectedProjectID == project.id {
             selectedProjectID = nil
         }
         modelContext.delete(project)
+        Task { @MainActor in
+            for id in tabIDs {
+                dismissWindow(id: "terminal", value: id)
+                await TerminalSessionRegistry.shared.remove(tabID: id)
+            }
+        }
     }
 
     private func closeTab(_ tab: Tab) {
+        let id = tab.id
         modelContext.delete(tab)
+        Task { @MainActor in
+            dismissWindow(id: "terminal", value: id)
+            await TerminalSessionRegistry.shared.remove(tabID: id)
+        }
     }
 }
 

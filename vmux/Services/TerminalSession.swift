@@ -1,9 +1,10 @@
 import Foundation
 import SwiftTerm
+import UIKit
 
 /// Abstracts the underlying SSH shell channel that backs a `TerminalSession`.
 /// Vending this through a protocol keeps `TerminalSession` unit-testable —
-/// the real implementation (T-012) wraps Citadel's TTY API; tests use a stub.
+/// production uses `CitadelShellChannel`; tests use a stub.
 protocol TerminalShellChannel: AnyObject, Sendable {
     /// Bytes flowing from the remote shell back to the UI.
     var inbound: AsyncStream<Data> { get }
@@ -19,53 +20,56 @@ final class TerminalSession {
     let tabID: UUID
     let projectID: UUID
 
-    @ObservationIgnored let terminal: Terminal
+    /// The SwiftTerm UIKit view that renders the shell. The SwiftUI bridge in
+    /// `TerminalWindowView` embeds this view directly so the session and the
+    /// rendered terminal share the same `SwiftTerm.Terminal` instance.
+    @ObservationIgnored let terminalView: TerminalView
 
     private(set) var lastByteAt: Date
 
     @ObservationIgnored private let channel: any TerminalShellChannel
-    @ObservationIgnored private let delegate: TerminalSessionDelegate
+    @ObservationIgnored private let viewDelegate: TerminalViewDelegateAdapter
     @ObservationIgnored private var pumpTask: Task<Void, Never>?
+    @ObservationIgnored private var isClosed = false
 
     init(
         tabID: UUID,
         projectID: UUID,
         channel: any TerminalShellChannel,
-        cols: Int = 80,
-        rows: Int = 24,
-        scrollback: Int = 500
+        frame: CGRect = CGRect(x: 0, y: 0, width: 800, height: 600)
     ) {
         self.tabID = tabID
         self.projectID = projectID
         self.channel = channel
         self.lastByteAt = Date()
 
-        let delegate = TerminalSessionDelegate()
-        self.delegate = delegate
+        let view = TerminalView(frame: frame)
+        self.terminalView = view
 
-        let options = TerminalOptions(cols: cols, rows: rows, scrollback: scrollback)
-        self.terminal = Terminal(delegate: delegate, options: options)
-
-        delegate.onSend = { [channel] data in
-            Task {
-                try? await channel.send(data)
-            }
+        let adapter = TerminalViewDelegateAdapter()
+        self.viewDelegate = adapter
+        adapter.onSend = { [channel] data in
+            Task { try? await channel.send(data) }
         }
+        view.terminalDelegate = adapter
 
         startPump()
     }
 
-    /// Write bytes into the remote shell. Used by SwiftTerm for keyboard input
-    /// and by `SpeechCoordinator` for transcribed commands.
+    /// Convenience accessor for the underlying SwiftTerm parser.
+    var terminal: Terminal { terminalView.getTerminal() }
+
+    /// Write bytes into the remote shell. Used by `SpeechCoordinator` for
+    /// transcribed commands; SwiftTerm keystrokes route through the delegate.
     func send(_ data: Data) {
         let channel = self.channel
-        Task {
-            try? await channel.send(data)
-        }
+        Task { try? await channel.send(data) }
     }
 
     /// Cancel the inbound pump and close the underlying channel.
     func close() async {
+        if isClosed { return }
+        isClosed = true
         pumpTask?.cancel()
         pumpTask = nil
         await channel.close()
@@ -73,28 +77,39 @@ final class TerminalSession {
 
     private func startPump() {
         let inbound = channel.inbound
-        pumpTask = Task { [weak self] in
+        pumpTask = Task { @MainActor [weak self] in
             for await chunk in inbound {
                 if Task.isCancelled { break }
-                await self?.handleInbound(chunk)
+                self?.handleInbound(chunk)
             }
         }
     }
 
     private func handleInbound(_ data: Data) {
-        terminal.feed(byteArray: [UInt8](data))
+        if data.isEmpty { return }
+        let bytes = [UInt8](data)
+        terminalView.feed(byteArray: ArraySlice(bytes))
         lastByteAt = Date()
     }
 }
 
-/// Forwarding delegate: SwiftTerm's `Terminal` requires a delegate, but the
-/// only callback we actually need is `send`, which fires when the emulator
-/// produces response bytes (e.g. for DA queries) or when our higher-level
-/// code wants user keystrokes routed back to the host.
-final class TerminalSessionDelegate: TerminalDelegate {
+/// Forwarding delegate: SwiftTerm's `TerminalView` requires a delegate to
+/// receive user keystrokes. We only need `send`; the other callbacks have no-op
+/// defaults until later tasks need them (title bar, link tapping, etc.).
+final class TerminalViewDelegateAdapter: TerminalViewDelegate {
     var onSend: (@Sendable (Data) -> Void)?
 
-    func send(source: Terminal, data: ArraySlice<UInt8>) {
+    func send(source: TerminalView, data: ArraySlice<UInt8>) {
         onSend?(Data(data))
     }
+
+    func sizeChanged(source: TerminalView, newCols: Int, newRows: Int) {}
+    func setTerminalTitle(source: TerminalView, title: String) {}
+    func hostCurrentDirectoryUpdate(source: TerminalView, directory: String?) {}
+    func scrolled(source: TerminalView, position: Double) {}
+    func requestOpenLink(source: TerminalView, link: String, params: [String: String]) {}
+    func bell(source: TerminalView) {}
+    func clipboardCopy(source: TerminalView, content: Data) {}
+    func iTermContent(source: TerminalView, content: ArraySlice<UInt8>) {}
+    func rangeChanged(source: TerminalView, startY: Int, endY: Int) {}
 }

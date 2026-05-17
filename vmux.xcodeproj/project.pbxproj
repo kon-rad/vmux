@@ -24,8 +24,11 @@
 		A0688372FBB93E1E61045266 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97AFFB50C561905208212B1 /* SettingsView.swift */; };
 		AEF134B84D22F1D05A814B0B /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CDE242E62FCD506036C5CA /* Tab.swift */; };
 		B3B037259AE3D44A4A9ABF71 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CA38E94DD5617CA901751F /* AppSettings.swift */; };
+		BB87BDC4CE63CC1762A0FE17 /* CitadelShellChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78737628860001B6A742952B /* CitadelShellChannel.swift */; };
 		C3BA751B18C8F0A7BE206E02 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C3914ED9062F3CA9C3AA6C /* Project.swift */; };
 		D9025D2CBEAB9BD3D3D80F1D /* ModelsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90663959B1DC13F503FB0435 /* ModelsTests.swift */; };
+		DA79883C831296B54EE11CF7 /* TerminalSessionRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2E2E88F8FD9455078597D7 /* TerminalSessionRegistry.swift */; };
+		DE3FBC37E1774861BBAB1422 /* SwiftTerm+SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AED1C032FA8602DF21203F4 /* SwiftTerm+SwiftUI.swift */; };
 		DFF6095625208F2518D2AEF3 /* TerminalWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2823173AD96199430F4504D /* TerminalWindowView.swift */; };
 		E3B713426383B460AEEE4B78 /* TerminalSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509BCBFC05A7D3AC5D104A5B /* TerminalSessionTests.swift */; };
 		F1D1E7604878B91B4E3ECC0E /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C1B45D444ACE0B59CAD4A6 /* KeychainService.swift */; };
@@ -48,12 +51,15 @@
 		33C1B45D444ACE0B59CAD4A6 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		42CDE242E62FCD506036C5CA /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
 		509BCBFC05A7D3AC5D104A5B /* TerminalSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalSessionTests.swift; sourceTree = "<group>"; };
+		6B2E2E88F8FD9455078597D7 /* TerminalSessionRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalSessionRegistry.swift; sourceTree = "<group>"; };
 		6C1CB298AC393794663C8525 /* SwiftPMImportCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftPMImportCheck.swift; sourceTree = "<group>"; };
+		78737628860001B6A742952B /* CitadelShellChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitadelShellChannel.swift; sourceTree = "<group>"; };
 		7D8681C94185E3883E494962 /* vmuxApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vmuxApp.swift; sourceTree = "<group>"; };
 		8C3E13E8E8FB2809FCFE86B6 /* SSHConnectionManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSHConnectionManagerTests.swift; sourceTree = "<group>"; };
 		90663959B1DC13F503FB0435 /* ModelsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelsTests.swift; sourceTree = "<group>"; };
 		911A4B0CC0F37AE1230A6DD3 /* TerminalSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalSession.swift; sourceTree = "<group>"; };
 		95C3914ED9062F3CA9C3AA6C /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		9AED1C032FA8602DF21203F4 /* SwiftTerm+SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwiftTerm+SwiftUI.swift"; sourceTree = "<group>"; };
 		A7941718287B63E0FAFC3582 /* SSHConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSHConnectionManager.swift; sourceTree = "<group>"; };
 		A894E664F81F3B50F2289977 /* SkydomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkydomeView.swift; sourceTree = "<group>"; };
 		AFBA952DFD394BD983ED4D57 /* vmuxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vmuxTests.swift; sourceTree = "<group>"; };
@@ -90,9 +96,11 @@
 		716238CFC48A0871CFF5550E /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				78737628860001B6A742952B /* CitadelShellChannel.swift */,
 				33C1B45D444ACE0B59CAD4A6 /* KeychainService.swift */,
 				A7941718287B63E0FAFC3582 /* SSHConnectionManager.swift */,
 				911A4B0CC0F37AE1230A6DD3 /* TerminalSession.swift */,
+				6B2E2E88F8FD9455078597D7 /* TerminalSessionRegistry.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -127,6 +135,7 @@
 				C8B0A21433352BE807A90E66 /* Views */,
 				EE0EC05648D477D1739A6A01 /* Assets.xcassets */,
 				6C1CB298AC393794663C8525 /* SwiftPMImportCheck.swift */,
+				9AED1C032FA8602DF21203F4 /* SwiftTerm+SwiftUI.swift */,
 				7D8681C94185E3883E494962 /* vmuxApp.swift */,
 			);
 			path = vmux;
@@ -286,6 +295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3B037259AE3D44A4A9ABF71 /* AppSettings.swift in Sources */,
+				BB87BDC4CE63CC1762A0FE17 /* CitadelShellChannel.swift in Sources */,
 				F1D1E7604878B91B4E3ECC0E /* KeychainService.swift in Sources */,
 				5A190596DED7EB8BF161D9A5 /* NewProjectSheet.swift in Sources */,
 				C3BA751B18C8F0A7BE206E02 /* Project.swift in Sources */,
@@ -294,8 +304,10 @@
 				8AFE12FF3AF039FBE07DF9CF /* SidebarView.swift in Sources */,
 				0A605C35C0F26F51293E51F9 /* SkydomeView.swift in Sources */,
 				11166ABB6E4E42A851CDF181 /* SwiftPMImportCheck.swift in Sources */,
+				DE3FBC37E1774861BBAB1422 /* SwiftTerm+SwiftUI.swift in Sources */,
 				AEF134B84D22F1D05A814B0B /* Tab.swift in Sources */,
 				09D24841DE3B7DD13010CF7D /* TerminalSession.swift in Sources */,
+				DA79883C831296B54EE11CF7 /* TerminalSessionRegistry.swift in Sources */,
 				DFF6095625208F2518D2AEF3 /* TerminalWindowView.swift in Sources */,
 				1124A5F0FD5190BE4E2EDF55 /* vmuxApp.swift in Sources */,
 			);
