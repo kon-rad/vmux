@@ -220,13 +220,13 @@ vmux/                              # Xcode project root
 
 ### Phase 0 — Scaffold
 
-- [ ] **T-001 — Create Xcode visionOS project**
+- [x] **T-001 — Create Xcode visionOS project**
   - **Why**: Need the project file to add code to.
   - **Do**: Create `vmux.xcodeproj` in repo root. App target name `vmux`, bundle id `com.vmux.app`, platform `visionOS 2.0`, interface `SwiftUI`, lifecycle `SwiftUI App`, language `Swift 6`. Add test target `vmuxTests`.
   - **Acceptance**: `xcodebuild -scheme vmux -destination 'platform=visionOS Simulator,name=Apple Vision Pro' build` succeeds. Project opens in Xcode without warnings.
   - **Depends on**: —
 
-- [ ] **T-002 — Add SwiftPM dependencies**
+- [x] **T-002 — Add SwiftPM dependencies**
   - **Why**: Lock the only two third-party packages we'll use.
   - **Do**: Add `Citadel` (`https://github.com/orlandos-nl/Citadel`, latest 1.x) and `SwiftTerm` (`https://github.com/migueldeicaza/SwiftTerm`, main or latest tag) to `vmux` target via SwiftPM in Xcode. Commit `Package.resolved`.
   - **Acceptance**: `import Citadel` and `import SwiftTerm` compile in a temporary file inside `vmux/`. Build still passes for visionOS simulator.

@@ -1,0 +1,77 @@
+name: vmux
+options:
+  bundleIdPrefix: com.vmux
+  deploymentTarget:
+    visionOS: "2.0"
+  createIntermediateGroups: true
+  generateEmptyDirectories: true
+  groupSortPosition: top
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    SWIFT_STRICT_CONCURRENCY: complete
+    SWIFT_UPCOMING_FEATURE_EXISTENTIAL_ANY: YES
+    ENABLE_USER_SCRIPT_SANDBOXING: YES
+    GENERATE_INFOPLIST_FILE: NO
+    DEVELOPMENT_TEAM: ""
+    CODE_SIGN_STYLE: Automatic
+    CODE_SIGNING_ALLOWED: NO
+packages:
+  Citadel:
+    url: https://github.com/orlandos-nl/Citadel
+    from: "0.9.2"
+  SwiftTerm:
+    url: https://github.com/migueldeicaza/SwiftTerm
+    from: "1.2.0"
+targets:
+  vmux:
+    type: application
+    platform: visionOS
+    deploymentTarget: "2.0"
+    sources:
+      - path: vmux
+        excludes:
+          - "Info.plist"
+    resources:
+      - path: vmux/Assets.xcassets
+      - path: vmux/Preview Content
+    dependencies:
+      - package: Citadel
+        product: Citadel
+      - package: SwiftTerm
+        product: SwiftTerm
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.vmux.app
+        PRODUCT_NAME: vmux
+        INFOPLIST_FILE: vmux/Info.plist
+        ENABLE_PREVIEWS: YES
+        DEVELOPMENT_ASSET_PATHS: "\"vmux/Preview Content\""
+        SUPPORTED_PLATFORMS: "xros xrsimulator"
+        TARGETED_DEVICE_FAMILY: "7"
+        SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD: NO
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+  vmuxTests:
+    type: bundle.unit-test
+    platform: visionOS
+    deploymentTarget: "2.0"
+    sources:
+      - path: vmuxTests
+    dependencies:
+      - target: vmux
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.vmux.app.tests
+        SUPPORTED_PLATFORMS: "xros xrsimulator"
+        TARGETED_DEVICE_FAMILY: "7"
+        GENERATE_INFOPLIST_FILE: YES
+schemes:
+  vmux:
+    build:
+      targets:
+        vmux: all
+        vmuxTests: [test]
+    test:
+      targets:
+        - vmuxTests
