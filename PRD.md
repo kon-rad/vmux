@@ -312,19 +312,19 @@ vmux/                              # Xcode project root
 
 ### Phase 3 — Speech
 
-- [ ] **T-015 — FocusStore + hover wiring**
+- [x] **T-015 — FocusStore + hover wiring**
   - **Why**: Source of truth for "what am I looking at".
   - **Do**: `@Observable final class FocusStore { static let shared = ...; var focusedTabID: UUID? }`. In `TerminalWindowView`, `.onHover { hovering in if hovering { FocusStore.shared.focusedTabID = tabID } }`. Sticky — never set to nil on hover-out. Apply a subtle blue border modifier when `FocusStore.shared.focusedTabID == tabID`.
   - **Acceptance**: Manual: hovering between two open terminals updates `FocusStore.focusedTabID`. Window with current focus shows a subtle blue border glow.
   - **Depends on**: T-012
 
-- [ ] **T-016a — GeminiLiveClient (WebSocket + setup)**
+- [x] **T-016a — GeminiLiveClient (WebSocket + setup)**
   - **Why**: Talk to the Gemini Live API over the documented bidi WebSocket using only `URLSessionWebSocketTask`. No SDK.
   - **Do**: Implement `actor GeminiLiveSession` with an `AsyncStream<TranscriptEvent>` output and an `async func sendAudio(_ pcm16: Data)` input. On `init(apiKey:, model:)`, open a `URLSessionWebSocketTask` to `wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1beta.GenerativeService.BidiGenerateContent?key=<apiKey>`. Send the setup JSON from §4.4 step 2 (with the configured model and `inputAudioTranscription: {}` + `responseModalities: ["TEXT"]`). Wait for `setupComplete` from the server before becoming ready. Start a receive-loop task that parses each server frame and, for any `serverContent.inputTranscription.text` value, yields `TranscriptEvent.partial(text)`. `sendAudio` base64-encodes and sends `{"realtimeInput":{"audio":{"data":"<b64>","mimeType":"audio/pcm;rate=16000"}}}`. Provide `close()` to cleanly terminate. Implement exponential backoff reconnect on unexpected close (250 ms → 4 s).
   - **Acceptance**: Unit test against a stubbed `URLSessionWebSocketTask` (or fake URL session) asserts the setup message body is correct and that received `inputTranscription` frames produce `TranscriptEvent.partial` values. Manual: with a real key, opening a session reaches `setupComplete` within 2 s.
   - **Depends on**: T-006, T-009
 
-- [ ] **T-016b — AudioFormatConverter + SpeechCoordinator**
+- [x] **T-016b — AudioFormatConverter + SpeechCoordinator**
   - **Why**: Connect mic → Gemini → focused tab.
   - **Do**:
     - `AudioFormatConverter`: wraps one `AVAudioConverter` configured from the input node's native format → PCM16, 16 kHz, mono, little-endian. `convert(_ buffer: AVAudioPCMBuffer) -> Data` returns the raw bytes ready to send.
@@ -337,13 +337,13 @@ vmux/                              # Xcode project root
   - **Acceptance**: With a focused tab and a valid Gemini key, speaking into the simulator/device mic updates `partialTranscript` within ~500 ms of speech onset. Switching focus closes the old session and opens a new one (verifiable via WebSocket activity in logs or a debug indicator).
   - **Depends on**: T-015, T-003, T-016a
 
-- [ ] **T-017 — Transcript overlay**
+- [x] **T-017 — Transcript overlay**
   - **Why**: User feedback that speech is being captured.
   - **Do**: `TranscriptPill` view bound to `SpeechCoordinator.partialTranscript`. Shown on the focused `TerminalWindowView` as a top-center translucent rounded rect with 🎙 icon + text. Hides 2s after the last partial.
   - **Acceptance**: Pill appears on the focused window while speaking; matches partial transcript live.
   - **Depends on**: T-016b
 
-- [ ] **T-018 — Commit on pause / keyword**
+- [x] **T-018 — Commit on pause / keyword**
   - **Why**: Send transcripts to the shell.
   - **Do**: In `SpeechCoordinator`, debounce: if `partialTranscript` has had no new fragment for 1.0 s OR its trailing words match " send" / " enter" (case-insensitive), strip the trigger word and write `text + "\r"` to the **currently** focused tab's `TerminalSession.send(...)` (re-read `FocusStore.focusedTabID` at commit time). Clear `partialTranscript`. **Do not** close or restart the Gemini Live session — the buffer simply resets and the next fragment starts a new utterance.
   - **Acceptance**: Focus a tab, say "list home directory send" → terminal receives `list home directory` + Enter. Saying "echo hello" + 1 s silence → same effect without the trigger word. Two consecutive utterances within the same focused session both commit correctly without reopening the WebSocket.

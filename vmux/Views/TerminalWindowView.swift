@@ -9,6 +9,9 @@ struct TerminalWindowView: View {
     @State private var loadError: String?
     @State private var isLoading = false
 
+    private let focusStore = FocusStore.shared
+    private let speech = SpeechCoordinator.shared
+
     var body: some View {
         VStack(spacing: 0) {
             titleBar
@@ -16,6 +19,34 @@ struct TerminalWindowView: View {
             content
         }
         .frame(minWidth: 640, minHeight: 400)
+        .overlay(alignment: .top) {
+            // Live transcript pill — only visible on the focused window. The
+            // pill itself owns its 2 s fade-out, so we keep it mounted while
+            // focused even when the partial is briefly empty.
+            if focusStore.focusedTabID == tabID {
+                TranscriptPill(text: speech.partialTranscript)
+                    .padding(.top, 12)
+                    .allowsHitTesting(false)
+            }
+        }
+        .overlay {
+            // Sticky focus indicator: subtle blue border glow when this tab is
+            // the one bound to SpeechCoordinator's mic + Gemini Live session.
+            if focusStore.focusedTabID == tabID {
+                RoundedRectangle(cornerRadius: 16, style: .continuous)
+                    .strokeBorder(Color.blue.opacity(0.55), lineWidth: 3)
+                    .shadow(color: Color.blue.opacity(0.4), radius: 8)
+                    .allowsHitTesting(false)
+                    .accessibilityHidden(true)
+            }
+        }
+        .onHover { hovering in
+            // Sticky: only set on hover-in. Hover-out never clears the focus —
+            // it only changes when another terminal window is hovered.
+            if hovering {
+                focusStore.focusedTabID = tabID
+            }
+        }
         .task(id: tabID) {
             await loadSession()
         }
