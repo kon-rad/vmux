@@ -8,6 +8,11 @@ struct TerminalWindowView: View {
     @State private var session: TerminalSession?
     @State private var loadError: String?
     @State private var isLoading = false
+    private let focusStore = FocusStore.shared
+
+    private var isFocused: Bool {
+        focusStore.focusedTabID == tabID
+    }
 
     var body: some View {
         VStack(spacing: 0) {
@@ -16,6 +21,15 @@ struct TerminalWindowView: View {
             content
         }
         .frame(minWidth: 640, minHeight: 400)
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .strokeBorder(Color.accentColor.opacity(isFocused ? 0.65 : 0), lineWidth: 2)
+                .animation(.easeInOut(duration: 0.2), value: isFocused)
+                .allowsHitTesting(false)
+        )
+        .onHover { hovering in
+            focusStore.reportHover(tabID: tabID, hovering: hovering)
+        }
         .task(id: tabID) {
             await loadSession()
         }

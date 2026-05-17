@@ -312,7 +312,7 @@ vmux/                              # Xcode project root
 
 ### Phase 3 — Speech
 
-- [ ] **T-015 — FocusStore + hover wiring**
+- [x] **T-015 — FocusStore + hover wiring**
   - **Why**: Source of truth for "what am I looking at".
   - **Do**: `@Observable final class FocusStore { static let shared = ...; var focusedTabID: UUID? }`. In `TerminalWindowView`, `.onHover { hovering in if hovering { FocusStore.shared.focusedTabID = tabID } }`. Sticky — never set to nil on hover-out. Apply a subtle blue border modifier when `FocusStore.shared.focusedTabID == tabID`.
   - **Acceptance**: Manual: hovering between two open terminals updates `FocusStore.focusedTabID`. Window with current focus shows a subtle blue border glow.

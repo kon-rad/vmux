@@ -18,6 +18,7 @@
 		41660C88513570298A02BC25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE0EC05648D477D1739A6A01 /* Assets.xcassets */; };
 		52C5C4FD38D298E7DB423DFA /* SSHConnectionManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3E13E8E8FB2809FCFE86B6 /* SSHConnectionManagerTests.swift */; };
 		5A190596DED7EB8BF161D9A5 /* NewProjectSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A6C6E47A1384A5B0D69CCD /* NewProjectSheet.swift */; };
+		678E646DF71817371C74F095 /* FocusStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2113EC34E18BFC7149B96A9 /* FocusStoreTests.swift */; };
 		67966EB14B0B5EBB28D2773D /* SessionStatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFEC8025094BA4D9D693AD7 /* SessionStatusTests.swift */; };
 		6BA349DA568D7AC430DC6EAA /* KeychainServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F99EEF4D931FECE01EFBB9 /* KeychainServiceTests.swift */; };
 		765027C49D53BE3082C56287 /* TabStatusDot.swift in Sources */ = {isa = PBXBuildFile; fileRef = B314EDA45A0F4B68CCC17680 /* TabStatusDot.swift */; };
@@ -25,6 +26,7 @@
 		8AFE12FF3AF039FBE07DF9CF /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DC5F45FF54964C40C07C1F /* SidebarView.swift */; };
 		925F2019804B40A741F4EDDB /* ActivityMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15AFE20DBADB548B789300B /* ActivityMonitor.swift */; };
 		9363377C08F3437508792EC8 /* vmuxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFBA952DFD394BD983ED4D57 /* vmuxTests.swift */; };
+		971765D7C32E9E6D61B593D3 /* FocusStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45364A3F232BA72501AFB4F2 /* FocusStore.swift */; };
 		9F6C46BCA2D687495DBD5D89 /* SSHConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7941718287B63E0FAFC3582 /* SSHConnectionManager.swift */; };
 		A0688372FBB93E1E61045266 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97AFFB50C561905208212B1 /* SettingsView.swift */; };
 		AEF134B84D22F1D05A814B0B /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CDE242E62FCD506036C5CA /* Tab.swift */; };
@@ -56,6 +58,7 @@
 		2184BC02AA6BF4A229B25755 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		33C1B45D444ACE0B59CAD4A6 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		42CDE242E62FCD506036C5CA /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
+		45364A3F232BA72501AFB4F2 /* FocusStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusStore.swift; sourceTree = "<group>"; };
 		509BCBFC05A7D3AC5D104A5B /* TerminalSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalSessionTests.swift; sourceTree = "<group>"; };
 		6B2E2E88F8FD9455078597D7 /* TerminalSessionRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalSessionRegistry.swift; sourceTree = "<group>"; };
 		6C1CB298AC393794663C8525 /* SwiftPMImportCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftPMImportCheck.swift; sourceTree = "<group>"; };
@@ -72,6 +75,7 @@
 		B2823173AD96199430F4504D /* TerminalWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalWindowView.swift; sourceTree = "<group>"; };
 		B314EDA45A0F4B68CCC17680 /* TabStatusDot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabStatusDot.swift; sourceTree = "<group>"; };
 		C15AFE20DBADB548B789300B /* ActivityMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityMonitor.swift; sourceTree = "<group>"; };
+		C2113EC34E18BFC7149B96A9 /* FocusStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusStoreTests.swift; sourceTree = "<group>"; };
 		C97AFFB50C561905208212B1 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		D807D859C581E9DFE08E7F0C /* TabStatusDotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabStatusDotTests.swift; sourceTree = "<group>"; };
 		D8A6C6E47A1384A5B0D69CCD /* NewProjectSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProjectSheet.swift; sourceTree = "<group>"; };
@@ -109,6 +113,7 @@
 			children = (
 				C15AFE20DBADB548B789300B /* ActivityMonitor.swift */,
 				78737628860001B6A742952B /* CitadelShellChannel.swift */,
+				45364A3F232BA72501AFB4F2 /* FocusStore.swift */,
 				33C1B45D444ACE0B59CAD4A6 /* KeychainService.swift */,
 				A7941718287B63E0FAFC3582 /* SSHConnectionManager.swift */,
 				911A4B0CC0F37AE1230A6DD3 /* TerminalSession.swift */,
@@ -130,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				E6B72783E3944F373A05497C /* ActivityMonitorTests.swift */,
+				C2113EC34E18BFC7149B96A9 /* FocusStoreTests.swift */,
 				E6F99EEF4D931FECE01EFBB9 /* KeychainServiceTests.swift */,
 				90663959B1DC13F503FB0435 /* ModelsTests.swift */,
 				0FFEC8025094BA4D9D693AD7 /* SessionStatusTests.swift */,
@@ -298,6 +304,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				39B88BC7E296BC4770B98221 /* ActivityMonitorTests.swift in Sources */,
+				678E646DF71817371C74F095 /* FocusStoreTests.swift in Sources */,
 				6BA349DA568D7AC430DC6EAA /* KeychainServiceTests.swift in Sources */,
 				D9025D2CBEAB9BD3D3D80F1D /* ModelsTests.swift in Sources */,
 				52C5C4FD38D298E7DB423DFA /* SSHConnectionManagerTests.swift in Sources */,
@@ -315,6 +322,7 @@
 				925F2019804B40A741F4EDDB /* ActivityMonitor.swift in Sources */,
 				B3B037259AE3D44A4A9ABF71 /* AppSettings.swift in Sources */,
 				BB87BDC4CE63CC1762A0FE17 /* CitadelShellChannel.swift in Sources */,
+				971765D7C32E9E6D61B593D3 /* FocusStore.swift in Sources */,
 				F1D1E7604878B91B4E3ECC0E /* KeychainService.swift in Sources */,
 				5A190596DED7EB8BF161D9A5 /* NewProjectSheet.swift in Sources */,
 				C3BA751B18C8F0A7BE206E02 /* Project.swift in Sources */,
