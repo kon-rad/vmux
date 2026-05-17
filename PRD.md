@@ -363,7 +363,7 @@ vmux/                              # Xcode project root
   - **Acceptance**: Manually copying a PNG into the Documents/panoramas dir and setting `activePanoramaFilename` updates the skydome live.
   - **Depends on**: T-019, T-004
 
-- [ ] **T-021 — OpenAIImageClient**
+- [x] **T-021 — OpenAIImageClient**
   - **Why**: Generate panoramas.
   - **Do**: Define `struct GenerationResult { let pngBytes: Data; let warning: String? }`. Implement `func generatePanorama(prompt: String, apiKey: String) async throws -> GenerationResult`. POST `https://api.openai.com/v1/images/generations` with JSON `{"model":"gpt-image-2","prompt":"<wrapped prompt>","size":"2048x1024","response_format":"b64_json","n":1}`. Wrap the prompt per §4.6. Decode `data[0].b64_json` → PNG bytes. If the API returns an error indicating the model name is unknown (HTTP 404 or 400 with `invalid_model` code), retry once with `gpt-image-1` and set `warning = "gpt-image-2 unavailable; used gpt-image-1 (may not be true 360°)"`. If the API returns `invalid_size` for `2048x1024`, retry once with `1024x1024` and append a size warning.
   - **Acceptance**: Unit test against a stubbed `URLProtocol` asserts the request body matches the spec for success, model-fallback, and size-fallback paths. Manual integration with a real key returns a PNG > 100 KB and a nil-or-non-nil warning as appropriate.
