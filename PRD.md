@@ -272,7 +272,7 @@ vmux/                              # Xcode project root
   - **Acceptance**: Adding a project persists across app relaunch. Secret stored under `vmux/<keychainRef>` in Keychain. Form validates: name non-empty, host non-empty, port 1–65535.
   - **Depends on**: T-006, T-007
 
-- [ ] **T-009 — SettingsView (profile + OpenAI key + Gemini key + idle threshold)**
+- [x] **T-009 — SettingsView (profile + OpenAI key + Gemini key + idle threshold)**
   - **Why**: Lay the groundwork before generation UI and speech.
   - **Do**: Sections 1, 2, 3, and 5 from §5.2. Display-name TextField bound to `AppSettings.displayName`. OpenAI key stored via `KeychainService` under `AppSettings.openAIKeychainRef` (generate UUID once, then reuse). "Test OpenAI" button performs `GET https://api.openai.com/v1/models` with `Authorization: Bearer <key>` → ✓/✗. Gemini key stored under `AppSettings.geminiKeychainRef`. Model picker (`gemini-2.5-flash` default, `gemini-2.5-pro`, or custom string) bound to `AppSettings.geminiModel`. "Test Gemini" button is a lightweight check: `GET https://generativelanguage.googleapis.com/v1beta/models?key=<key>` returns 200 → ✓. Idle-threshold slider bound to `AppSettings.idleThresholdSeconds`, range 1…10, snaps to integer.
   - **Acceptance**: Display name, both keys, model selection, and slider value all persist across relaunch. Both Test buttons surface success/failure correctly for valid/invalid keys.
