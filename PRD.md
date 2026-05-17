@@ -280,7 +280,7 @@ vmux/                              # Xcode project root
 
 ### Phase 2 — SSH + Terminal
 
-- [ ] **T-010 — SSHConnectionManager**
+- [x] **T-010 — SSHConnectionManager**
   - **Why**: Central place to share a `Citadel.SSHClient` across tabs of one project.
   - **Do**: `actor SSHConnectionManager` keyed by `Project.id`. `func client(for: Project) async throws -> SSHClient` — connects if needed using stored auth (password or pasted private key). On unexpected disconnect, mark dead and reconnect on next request.
   - **Acceptance**: Integration test (skippable without `VMUX_TEST_HOST` env) connects to a local SSH server, runs `echo ok`, gets "ok". Manual: connecting to a known server from the app does not throw.
