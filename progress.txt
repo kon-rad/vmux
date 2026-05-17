@@ -6,3 +6,5 @@ T-003
 T-003 VERIFY: pass — `plutil -lint vmux/Info.plist` returned OK; `NSMicrophoneUsageDescription` present with the PRD-specified copy; `NSSpeechRecognitionUsageDescription` correctly absent (Speech framework not used; Gemini Live replaces it).
 T-004
 T-004 VERIFY: pass — vmux/Models/{Project,Tab,AppSettings}.swift implement the §4.2 schemas; vmuxApp.swift wires ModelContainer + AppSettings.bootstrap; vmuxTests/ModelsTests.swift covers round-trip, cascade delete, and single-row bootstrap.
+T-005
+T-005 VERIFY: pass — vmuxApp.swift defines all four scenes (sidebar/settings/terminal-per-UUID/environment-immersive-mixed); vmux/Views/{Sidebar,Settings,TerminalWindow,Skydome}View.swift created; SidebarView wires the three temp buttons (Open Settings / Open Terminal / Open Environment) via openWindow + openImmersiveSpace per T-005 Do block.

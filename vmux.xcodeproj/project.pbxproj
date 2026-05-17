@@ -3,21 +3,25 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 63;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		070B2DC41A10BB9E4D89B20C /* SwiftTerm in Frameworks */ = {isa = PBXBuildFile; productRef = 9154421B75395B16A10932B4 /* SwiftTerm */; };
+		0A605C35C0F26F51293E51F9 /* SkydomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A894E664F81F3B50F2289977 /* SkydomeView.swift */; };
 		11166ABB6E4E42A851CDF181 /* SwiftPMImportCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1CB298AC393794663C8525 /* SwiftPMImportCheck.swift */; };
 		1124A5F0FD5190BE4E2EDF55 /* vmuxApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8681C94185E3883E494962 /* vmuxApp.swift */; };
 		2E98139ECD0814C8888B1EB7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2184BC02AA6BF4A229B25755 /* Preview Assets.xcassets */; };
 		41660C88513570298A02BC25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE0EC05648D477D1739A6A01 /* Assets.xcassets */; };
 		8AF632D8C218B518D7AE4D2B /* Citadel in Frameworks */ = {isa = PBXBuildFile; productRef = 3919FF17FB2FDC39C6D2E5AF /* Citadel */; };
+		8AFE12FF3AF039FBE07DF9CF /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DC5F45FF54964C40C07C1F /* SidebarView.swift */; };
 		9363377C08F3437508792EC8 /* vmuxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFBA952DFD394BD983ED4D57 /* vmuxTests.swift */; };
+		A0688372FBB93E1E61045266 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97AFFB50C561905208212B1 /* SettingsView.swift */; };
 		AEF134B84D22F1D05A814B0B /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CDE242E62FCD506036C5CA /* Tab.swift */; };
 		B3B037259AE3D44A4A9ABF71 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CA38E94DD5617CA901751F /* AppSettings.swift */; };
 		C3BA751B18C8F0A7BE206E02 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C3914ED9062F3CA9C3AA6C /* Project.swift */; };
 		D9025D2CBEAB9BD3D3D80F1D /* ModelsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90663959B1DC13F503FB0435 /* ModelsTests.swift */; };
+		DFF6095625208F2518D2AEF3 /* TerminalWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2823173AD96199430F4504D /* TerminalWindowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,14 +36,18 @@
 
 /* Begin PBXFileReference section */
 		14CA38E94DD5617CA901751F /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
-		1E199A4016A5A3D80DA2F613 /* vmux.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = vmux.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E199A4016A5A3D80DA2F613 /* vmux.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = vmux.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2184BC02AA6BF4A229B25755 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		42CDE242E62FCD506036C5CA /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
 		6C1CB298AC393794663C8525 /* SwiftPMImportCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftPMImportCheck.swift; sourceTree = "<group>"; };
 		7D8681C94185E3883E494962 /* vmuxApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vmuxApp.swift; sourceTree = "<group>"; };
 		90663959B1DC13F503FB0435 /* ModelsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelsTests.swift; sourceTree = "<group>"; };
 		95C3914ED9062F3CA9C3AA6C /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		A894E664F81F3B50F2289977 /* SkydomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkydomeView.swift; sourceTree = "<group>"; };
 		AFBA952DFD394BD983ED4D57 /* vmuxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vmuxTests.swift; sourceTree = "<group>"; };
+		B2823173AD96199430F4504D /* TerminalWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalWindowView.swift; sourceTree = "<group>"; };
+		C97AFFB50C561905208212B1 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		E4DC5F45FF54964C40C07C1F /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		EE0EC05648D477D1739A6A01 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EF829441E64BA83D6A6341D6 /* vmuxTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = vmuxTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -107,6 +115,10 @@
 			isa = PBXGroup;
 			children = (
 				151C63A93EA8E53183CF2C44 /* Components */,
+				C97AFFB50C561905208212B1 /* SettingsView.swift */,
+				E4DC5F45FF54964C40C07C1F /* SidebarView.swift */,
+				A894E664F81F3B50F2289977 /* SkydomeView.swift */,
+				B2823173AD96199430F4504D /* TerminalWindowView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -194,7 +206,6 @@
 						ProvisioningStyle = Automatic;
 					};
 					40601123755F6E4C2405A43E = {
-						DevelopmentTeam = DHB5JNF8ZW;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -213,7 +224,6 @@
 				B67C067BF7E4BABA56E243A3 /* XCRemoteSwiftPackageReference "Citadel" */,
 				FB6900B38684923114272452 /* XCRemoteSwiftPackageReference "SwiftTerm" */,
 			);
-			preferredProjectObjectVersion = 77;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -251,8 +261,12 @@
 			files = (
 				B3B037259AE3D44A4A9ABF71 /* AppSettings.swift in Sources */,
 				C3BA751B18C8F0A7BE206E02 /* Project.swift in Sources */,
+				A0688372FBB93E1E61045266 /* SettingsView.swift in Sources */,
+				8AFE12FF3AF039FBE07DF9CF /* SidebarView.swift in Sources */,
+				0A605C35C0F26F51293E51F9 /* SkydomeView.swift in Sources */,
 				11166ABB6E4E42A851CDF181 /* SwiftPMImportCheck.swift in Sources */,
 				AEF134B84D22F1D05A814B0B /* Tab.swift in Sources */,
+				DFF6095625208F2518D2AEF3 /* TerminalWindowView.swift in Sources */,
 				1124A5F0FD5190BE4E2EDF55 /* vmuxApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -293,6 +307,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				DEVELOPMENT_ASSET_PATHS = "\"vmux/Preview Content\"";
+				DEVELOPMENT_TEAM = GA978N825M;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = vmux/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -467,6 +482,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				DEVELOPMENT_ASSET_PATHS = "\"vmux/Preview Content\"";
+				DEVELOPMENT_TEAM = GA978N825M;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = vmux/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

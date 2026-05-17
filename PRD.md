@@ -246,7 +246,7 @@ vmux/                              # Xcode project root
   - **Acceptance**: Unit test creates a Project + Tab in an in-memory container, fetches them back, asserts cascade-delete removes child tabs. App launch creates exactly one `AppSettings` row.
   - **Depends on**: T-001
 
-- [ ] **T-005 — Scene graph stub**
+- [x] **T-005 — Scene graph stub**
   - **Why**: Get all windows reachable so later tasks can fill them in.
   - **Do**: Define all four scenes in `vmuxApp.swift` per §4.1. Each view is a placeholder `Text(...)`. The terminal `WindowGroup(for: Tab.ID.self)` uses `value: tabID` to open. Inside the sidebar placeholder, add three temporary buttons: "Open Settings" (calls `openWindow(id: "settings")`), "Open Terminal" (calls `openWindow(id: "terminal", value: UUID())`), and "Toggle Environment" (calls `openImmersiveSpace(id: "environment")` / `dismissImmersiveSpace()`). These buttons are deleted in later tasks (T-007, T-019) once real triggers exist.
   - **Acceptance**: App launches in visionOS simulator. Sidebar window appears with three temporary buttons. Each button opens its respective scene.

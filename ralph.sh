@@ -1,13 +1,34 @@
 #!/bin/bash
-while true; do
-  claude --dangerously-skip-permissions "@PRD.md" "@progress.txt" \
-  "1. Read the PRD.md and progress.txt files.
-   2. Find the next incomplete task and implement it.
-   3. Run your tests to verify the fix.
-   4. Commit your changes via git.
-   5. Append the completed task to progress.txt.
-   ONLY DO ONE TASK AT A TIME. Exit when done."
+# vmux Ralph loop — unattended task executor.
+# Picks the first unchecked task in PRD.md, implements it, commits, appends progress.txt, exits.
 
-  echo "Iteration complete. Spawning next fresh context loop..."
+set -u
+
+while true; do
+  claude --dangerously-skip-permissions "@PRD.md" "@progress.txt" "$(cat <<'PROMPT'
+You are running inside an unattended automation loop. The user is NOT here. Do NOT ask any questions. Do NOT present options. Do NOT request confirmation. Do NOT propose alternatives. Just execute.
+
+EXECUTE THESE STEPS, IN ORDER, EXACTLY ONCE, THEN EXIT:
+
+1. Read PRD.md and progress.txt.
+2. In PRD.md §7 Task List, find the FIRST task whose checkbox is "- [ ]". Call it T-NNN.
+3. Implement T-NNN end-to-end per its "Do" block. Follow the Acceptance criteria.
+4. Run any tests or verification commands the task requires. Use `xcodebuild` for build/test (sandbox is bypassed; just run it).
+5. In PRD.md, flip the checkbox for T-NNN from "- [ ]" to "- [x]".
+6. `git add` all your changes (do NOT add: design/, landing/, ralph.log, DerivedData/, build/). Create a single commit with subject "T-NNN: <short title>".
+7. Append exactly two lines to progress.txt:
+   T-NNN
+   T-NNN VERIFY: pass — <one-sentence summary of how you verified>
+8. Exit immediately. Do not summarize. Do not ask what's next.
+
+RULES:
+- If T-NNN is genuinely blocked (e.g. external service unreachable), append "T-NNN BLOCKED: <reason>" to progress.txt instead, commit any partial work with subject "T-NNN (blocked): <reason>", and exit. Do not invent workarounds outside the PRD.
+- Stay within scope of T-NNN. Do not also do T-(NNN+1).
+- Do not modify ralph.sh, PRD.md sections outside §7, or files outside the repo.
+- Trust the PRD's tech choices. Do not propose alternatives.
+PROMPT
+)"
+
+  echo "$(date '+%H:%M:%S') Iteration complete. Spawning next..."
   sleep 2
 done

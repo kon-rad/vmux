@@ -17,21 +17,26 @@ struct vmuxApp: App {
     }
 
     var body: some Scene {
-        WindowGroup {
-            ContentView()
+        WindowGroup(id: "sidebar") {
+            SidebarView()
         }
         .modelContainer(container)
-    }
-}
 
-struct ContentView: View {
-    var body: some View {
-        Text("vmux")
-            .font(.largeTitle)
-            .padding()
-    }
-}
+        WindowGroup(id: "settings") {
+            SettingsView()
+        }
+        .modelContainer(container)
 
-#Preview {
-    ContentView()
+        WindowGroup(id: "terminal", for: UUID.self) { $tabID in
+            if let tabID {
+                TerminalWindowView(tabID: tabID)
+            }
+        }
+        .modelContainer(container)
+
+        ImmersiveSpace(id: "environment") {
+            SkydomeView()
+        }
+        .immersionStyle(selection: .constant(.mixed), in: .mixed)
+    }
 }
