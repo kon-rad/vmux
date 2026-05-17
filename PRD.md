@@ -260,7 +260,7 @@ vmux/                              # Xcode project root
   - **Acceptance**: Unit test round-trips a secret. Delete removes it. Loading missing returns nil.
   - **Depends on**: T-001
 
-- [ ] **T-007 — SidebarView shell**
+- [x] **T-007 — SidebarView shell**
   - **Why**: Primary navigation.
   - **Do**: Build sections per §5.1. Projects list reads from SwiftData `@Query`. Selecting a project sets a `@State` selected ID. Tab list filters by selected project. `+ New Project` and `+ New Tab` buttons wired to no-op handlers for now (real sheets/openers in T-008, T-012). Settings button at bottom-left opens settings window via `@Environment(\.openWindow)`. **Remove** the three temp buttons added in T-005.
   - **Acceptance**: With manually-inserted test data, sidebar shows projects + tabs. Settings button opens the settings window. The T-005 temp buttons are gone.
