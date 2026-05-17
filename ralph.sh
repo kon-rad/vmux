@@ -21,11 +21,11 @@ EOF
 read -r -d '' USER_PROMPT <<'EOF' || true
 EXECUTE NOW. No preamble. No questions.
 
-THIS WORKTREE IS SCOPED TO TRACK A: only the following task IDs are allowed: T-013, T-014, T-024.
-Other tasks are being worked on in parallel git worktrees on branches `speech` and `panorama`.
+THIS WORKTREE IS SCOPED TO TRACK B (SPEECH): only the following task IDs are allowed: T-015, T-016a, T-016b, T-017, T-018.
+You are on branch `speech`. Other tasks are being worked on in parallel git worktrees on branches `main` and `panorama`.
 If you pick a task outside this allow-list, you will collide with another Ralph and waste an iteration.
 
-1. Find the first task in PRD.md section 7 whose checkbox is "- [ ]" AND whose ID is in {T-013, T-014, T-024}. Call it T-NNN. If no such task exists, append "TRACK-A IDLE" to progress.txt and exit.
+1. Find the first task in PRD.md section 7 whose checkbox is "- [ ]" AND whose ID is in {T-015, T-016a, T-016b, T-017, T-018}. Call it T-NNN. If no such task exists, append "TRACK-B IDLE" to progress.txt and exit.
 2. Implement T-NNN per its Do block. Honor its Acceptance criteria.
 3. Run xcodebuild build + test for platform=visionOS Simulator,name=Apple Vision Pro. Both must pass.
 4. Flip the T-NNN checkbox in PRD.md from "- [ ]" to "- [x]".
