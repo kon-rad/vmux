@@ -1,6 +1,6 @@
 #!/bin/bash
 while true; do
-  claude --permission-mode acceptEdits "@PRD.md" "@progress.txt" \
+  claude --dangerously-skip-permissions "@PRD.md" "@progress.txt" \
   "1. Read the PRD.md and progress.txt files.
    2. Find the next incomplete task and implement it.
    3. Run your tests to verify the fix.
