@@ -32,3 +32,5 @@ Package.pins
 
 # Ralph
 ralph.log
+
+.env
