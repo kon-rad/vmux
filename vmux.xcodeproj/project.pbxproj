@@ -30,6 +30,7 @@
 		971765D7C32E9E6D61B593D3 /* FocusStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45364A3F232BA72501AFB4F2 /* FocusStore.swift */; };
 		9F6C46BCA2D687495DBD5D89 /* SSHConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7941718287B63E0FAFC3582 /* SSHConnectionManager.swift */; };
 		A0688372FBB93E1E61045266 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97AFFB50C561905208212B1 /* SettingsView.swift */; };
+		A880E191B369B0BAD71D2F56 /* TranscriptPill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1191A50C7C341E79E435F0 /* TranscriptPill.swift */; };
 		AEF134B84D22F1D05A814B0B /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CDE242E62FCD506036C5CA /* Tab.swift */; };
 		B3B037259AE3D44A4A9ABF71 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CA38E94DD5617CA901751F /* AppSettings.swift */; };
 		BB87BDC4CE63CC1762A0FE17 /* CitadelShellChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78737628860001B6A742952B /* CitadelShellChannel.swift */; };
@@ -58,6 +59,7 @@
 		1E199A4016A5A3D80DA2F613 /* vmux.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = vmux.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		206B94FCC6E96459BF048453 /* GeminiLiveClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeminiLiveClient.swift; sourceTree = "<group>"; };
 		2184BC02AA6BF4A229B25755 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		2F1191A50C7C341E79E435F0 /* TranscriptPill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptPill.swift; sourceTree = "<group>"; };
 		33C1B45D444ACE0B59CAD4A6 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		42CDE242E62FCD506036C5CA /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
 		45364A3F232BA72501AFB4F2 /* FocusStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusStore.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				D8A6C6E47A1384A5B0D69CCD /* NewProjectSheet.swift */,
+				2F1191A50C7C341E79E435F0 /* TranscriptPill.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 				09D24841DE3B7DD13010CF7D /* TerminalSession.swift in Sources */,
 				DA79883C831296B54EE11CF7 /* TerminalSessionRegistry.swift in Sources */,
 				DFF6095625208F2518D2AEF3 /* TerminalWindowView.swift in Sources */,
+				A880E191B369B0BAD71D2F56 /* TranscriptPill.swift in Sources */,
 				1124A5F0FD5190BE4E2EDF55 /* vmuxApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

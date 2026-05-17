@@ -337,7 +337,7 @@ vmux/                              # Xcode project root
   - **Acceptance**: With a focused tab and a valid Gemini key, speaking into the simulator/device mic updates `partialTranscript` within ~500 ms of speech onset. Switching focus closes the old session and opens a new one (verifiable via WebSocket activity in logs or a debug indicator).
   - **Depends on**: T-015, T-003, T-016a
 
-- [ ] **T-017 — Transcript overlay**
+- [x] **T-017 — Transcript overlay**
   - **Why**: User feedback that speech is being captured.
   - **Do**: `TranscriptPill` view bound to `SpeechCoordinator.partialTranscript`. Shown on the focused `TerminalWindowView` as a top-center translucent rounded rect with 🎙 icon + text. Hides 2s after the last partial.
   - **Acceptance**: Pill appears on the focused window while speaking; matches partial transcript live.
