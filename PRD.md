@@ -351,31 +351,31 @@ vmux/                              # Xcode project root
 
 ### Phase 4 — 360 environment
 
-- [ ] **T-019 — SkydomeView (immersive space)**
+- [x] **T-019 — SkydomeView (immersive space)**
   - **Why**: Render the 360 background.
   - **Do**: `RealityView` inside `ImmersiveSpace("environment")`. Build an `Entity` with `MeshResource.generateSphere(radius: 30)` rendered from the inside (custom mesh descriptor with reversed indices/normals, or invert via a flipped scale on one axis). Apply `UnlitMaterial` with the active panorama texture, or a placeholder gradient PNG bundled in Assets if none active.
   - **Acceptance**: Launching app and entering immersive space shows a panorama background visible behind the windows.
   - **Depends on**: T-005
 
-- [ ] **T-020 — PanoramaStore + reload-on-change**
+- [x] **T-020 — PanoramaStore + reload-on-change**
   - **Why**: Connect Settings choices to the skydome.
   - **Do**: `PanoramaStore` lists PNGs in `Documents/panoramas/`, can save bytes to a uuid filename, can delete. Publishes `activeImage: UIImage?` driven by `AppSettings.activePanoramaFilename`. `SkydomeView` swaps texture when `activeImage` changes.
   - **Acceptance**: Manually copying a PNG into the Documents/panoramas dir and setting `activePanoramaFilename` updates the skydome live.
   - **Depends on**: T-019, T-004
 
-- [ ] **T-021 — OpenAIImageClient**
+- [x] **T-021 — OpenAIImageClient**
   - **Why**: Generate panoramas.
   - **Do**: Define `struct GenerationResult { let pngBytes: Data; let warning: String? }`. Implement `func generatePanorama(prompt: String, apiKey: String) async throws -> GenerationResult`. POST `https://api.openai.com/v1/images/generations` with JSON `{"model":"gpt-image-2","prompt":"<wrapped prompt>","size":"2048x1024","response_format":"b64_json","n":1}`. Wrap the prompt per §4.6. Decode `data[0].b64_json` → PNG bytes. If the API returns an error indicating the model name is unknown (HTTP 404 or 400 with `invalid_model` code), retry once with `gpt-image-1` and set `warning = "gpt-image-2 unavailable; used gpt-image-1 (may not be true 360°)"`. If the API returns `invalid_size` for `2048x1024`, retry once with `1024x1024` and append a size warning.
   - **Acceptance**: Unit test against a stubbed `URLProtocol` asserts the request body matches the spec for success, model-fallback, and size-fallback paths. Manual integration with a real key returns a PNG > 100 KB and a nil-or-non-nil warning as appropriate.
   - **Depends on**: T-009
 
-- [ ] **T-022 — Settings: Generate flow**
+- [x] **T-022 — Settings: Generate flow**
   - **Why**: Wire the generator into the UI.
   - **Do**: Add §5.2 section 3. "Generate Panorama" calls `OpenAIImageClient`, writes `GenerationResult.pngBytes` to `Documents/panoramas/<uuid>.png` via `PanoramaStore`, sets it active. Show an indeterminate progress view while in flight. Disable button if no API key. Show error alert on failure. If `GenerationResult.warning != nil`, show a non-blocking yellow banner with the warning text above the grid.
   - **Acceptance**: Entering a prompt and tapping Generate produces a new file in the panoramas grid and switches the skydome to it within ~60s. Warnings surface visibly when present.
   - **Depends on**: T-021, T-020, T-009
 
-- [ ] **T-023 — Panorama picker grid**
+- [x] **T-023 — Panorama picker grid**
   - **Why**: Multiple saved panoramas.
   - **Do**: Grid in Settings rendering all panoramas with `Image(uiImage:)` thumbnails (~120pt). Tap = set active. Long-press = delete (with confirm). Active one has a check overlay.
   - **Acceptance**: Generating two panoramas yields two thumbnails. Tapping each switches the skydome. Deleting removes the file and the thumbnail.
