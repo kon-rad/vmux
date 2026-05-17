@@ -5,8 +5,15 @@
 set -u
 
 while true; do
-  claude --dangerously-skip-permissions "@PRD.md" "@progress.txt" "$(cat <<'PROMPT'
-You are running inside an unattended automation loop. The user is NOT here. Do NOT ask any questions. Do NOT present options. Do NOT request confirmation. Do NOT propose alternatives. Just execute.
+  claude \
+    --dangerously-skip-permissions \
+    --disallowed-tools "AskUserQuestion,ExitPlanMode,Skill,ScheduleWakeup" \
+    "@PRD.md" "@progress.txt" "$(cat <<'PROMPT'
+You are running inside an unattended automation loop. The user is NOT here and CANNOT answer questions. Any attempt to ask will return an empty dismissal and waste an iteration.
+
+The AskUserQuestion, ExitPlanMode, Skill, and ScheduleWakeup tools are DISABLED at the CLI level — calling any of them will error. Do not call them. Do not call any tool whose purpose is to pause for human input.
+
+Do NOT ask questions. Do NOT present numbered options ("1. ... 2. ... 3. ..."). Do NOT request confirmation. Do NOT propose alternatives. Do NOT say "let me know how you'd like to proceed". Just execute.
 
 EXECUTE THESE STEPS, IN ORDER, EXACTLY ONCE, THEN EXIT:
 
