@@ -351,7 +351,7 @@ vmux/                              # Xcode project root
 
 ### Phase 4 — 360 environment
 
-- [ ] **T-019 — SkydomeView (immersive space)**
+- [x] **T-019 — SkydomeView (immersive space)**
   - **Why**: Render the 360 background.
   - **Do**: `RealityView` inside `ImmersiveSpace("environment")`. Build an `Entity` with `MeshResource.generateSphere(radius: 30)` rendered from the inside (custom mesh descriptor with reversed indices/normals, or invert via a flipped scale on one axis). Apply `UnlitMaterial` with the active panorama texture, or a placeholder gradient PNG bundled in Assets if none active.
   - **Acceptance**: Launching app and entering immersive space shows a panorama background visible behind the windows.

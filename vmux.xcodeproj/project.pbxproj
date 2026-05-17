@@ -20,6 +20,7 @@
 		8AF632D8C218B518D7AE4D2B /* Citadel in Frameworks */ = {isa = PBXBuildFile; productRef = 3919FF17FB2FDC39C6D2E5AF /* Citadel */; };
 		8AFE12FF3AF039FBE07DF9CF /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DC5F45FF54964C40C07C1F /* SidebarView.swift */; };
 		9363377C08F3437508792EC8 /* vmuxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFBA952DFD394BD983ED4D57 /* vmuxTests.swift */; };
+		9E93967B29393D0925FFEBD1 /* SkydomeBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AE8F56F6B5A0214617AB53 /* SkydomeBuilderTests.swift */; };
 		9F6C46BCA2D687495DBD5D89 /* SSHConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7941718287B63E0FAFC3582 /* SSHConnectionManager.swift */; };
 		A0688372FBB93E1E61045266 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97AFFB50C561905208212B1 /* SettingsView.swift */; };
 		AEF134B84D22F1D05A814B0B /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CDE242E62FCD506036C5CA /* Tab.swift */; };
@@ -55,6 +56,7 @@
 		6C1CB298AC393794663C8525 /* SwiftPMImportCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftPMImportCheck.swift; sourceTree = "<group>"; };
 		78737628860001B6A742952B /* CitadelShellChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitadelShellChannel.swift; sourceTree = "<group>"; };
 		7D8681C94185E3883E494962 /* vmuxApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vmuxApp.swift; sourceTree = "<group>"; };
+		80AE8F56F6B5A0214617AB53 /* SkydomeBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkydomeBuilderTests.swift; sourceTree = "<group>"; };
 		8C3E13E8E8FB2809FCFE86B6 /* SSHConnectionManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSHConnectionManagerTests.swift; sourceTree = "<group>"; };
 		90663959B1DC13F503FB0435 /* ModelsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelsTests.swift; sourceTree = "<group>"; };
 		911A4B0CC0F37AE1230A6DD3 /* TerminalSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalSession.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 			children = (
 				E6F99EEF4D931FECE01EFBB9 /* KeychainServiceTests.swift */,
 				90663959B1DC13F503FB0435 /* ModelsTests.swift */,
+				80AE8F56F6B5A0214617AB53 /* SkydomeBuilderTests.swift */,
 				8C3E13E8E8FB2809FCFE86B6 /* SSHConnectionManagerTests.swift */,
 				509BCBFC05A7D3AC5D104A5B /* TerminalSessionTests.swift */,
 				AFBA952DFD394BD983ED4D57 /* vmuxTests.swift */,
@@ -285,6 +288,7 @@
 				6BA349DA568D7AC430DC6EAA /* KeychainServiceTests.swift in Sources */,
 				D9025D2CBEAB9BD3D3D80F1D /* ModelsTests.swift in Sources */,
 				52C5C4FD38D298E7DB423DFA /* SSHConnectionManagerTests.swift in Sources */,
+				9E93967B29393D0925FFEBD1 /* SkydomeBuilderTests.swift in Sources */,
 				E3B713426383B460AEEE4B78 /* TerminalSessionTests.swift in Sources */,
 				9363377C08F3437508792EC8 /* vmuxTests.swift in Sources */,
 			);
