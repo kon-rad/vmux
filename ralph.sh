@@ -7,7 +7,8 @@ set -u
 while true; do
   claude \
     --dangerously-skip-permissions \
-    --disallowed-tools "AskUserQuestion,ExitPlanMode,Skill,ScheduleWakeup" \
+    --disallowed-tools=AskUserQuestion --disallowed-tools=ExitPlanMode \
+    --disallowed-tools=Skill --disallowed-tools=ScheduleWakeup \
     "@PRD.md" "@progress.txt" "$(cat <<'PROMPT'
 You are running inside an unattended automation loop. The user is NOT here and CANNOT answer questions. Any attempt to ask will return an empty dismissal and waste an iteration.
 
