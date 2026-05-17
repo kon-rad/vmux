@@ -369,7 +369,7 @@ vmux/                              # Xcode project root
   - **Acceptance**: Unit test against a stubbed `URLProtocol` asserts the request body matches the spec for success, model-fallback, and size-fallback paths. Manual integration with a real key returns a PNG > 100 KB and a nil-or-non-nil warning as appropriate.
   - **Depends on**: T-009
 
-- [ ] **T-022 — Settings: Generate flow**
+- [x] **T-022 — Settings: Generate flow**
   - **Why**: Wire the generator into the UI.
   - **Do**: Add §5.2 section 3. "Generate Panorama" calls `OpenAIImageClient`, writes `GenerationResult.pngBytes` to `Documents/panoramas/<uuid>.png` via `PanoramaStore`, sets it active. Show an indeterminate progress view while in flight. Disable button if no API key. Show error alert on failure. If `GenerationResult.warning != nil`, show a non-blocking yellow banner with the warning text above the grid.
   - **Acceptance**: Entering a prompt and tapping Generate produces a new file in the panoramas grid and switches the skydome to it within ~60s. Warnings surface visibly when present.

@@ -57,7 +57,17 @@ private struct SettingsForm: View {
     @State private var openAITestState: TestState = .idle
     @State private var geminiTestState: TestState = .idle
 
+    @State private var panoramaPrompt: String = ""
+    @State private var isGeneratingPanorama: Bool = false
+    @State private var panoramaWarning: String?
+    @State private var panoramaError: String?
+
+    @State private var panoramaStore: PanoramaStore = .shared
+
     private let keychain = KeychainService()
+    private let imageClient = OpenAIImageClient()
+
+    private static let panoramaPromptLimit = 32_000
 
     var body: some View {
         NavigationStack {
@@ -65,12 +75,19 @@ private struct SettingsForm: View {
                 profileSection
                 openAISection
                 geminiSection
+                panoramaSection
                 idleSection
             }
             .navigationTitle("Settings")
         }
         .frame(minWidth: 520, minHeight: 640)
         .onAppear(perform: loadFromStorage)
+        .alert(
+            "Panorama generation failed",
+            isPresented: panoramaErrorPresented,
+            actions: { Button("OK", role: .cancel) { panoramaError = nil } },
+            message: { Text(panoramaError ?? "") }
+        )
     }
 
     private var profileSection: some View {
@@ -142,6 +159,76 @@ private struct SettingsForm: View {
         }
     }
 
+    private var panoramaSection: some View {
+        Section("360 Environment") {
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Describe the panorama you want generated.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                TextEditor(text: panoramaPromptBinding)
+                    .frame(minHeight: 96, maxHeight: 200)
+                    .textInputAutocapitalization(.sentences)
+                    .overlay(alignment: .bottomTrailing) {
+                        Text("\(panoramaPrompt.count) / \(Self.panoramaPromptLimit)")
+                            .font(.caption2)
+                            .foregroundStyle(.secondary)
+                            .padding(4)
+                    }
+            }
+
+            HStack {
+                Button(action: { Task { await generatePanorama() } }) {
+                    if isGeneratingPanorama {
+                        ProgressView()
+                    } else {
+                        Text("Generate Panorama")
+                    }
+                }
+                .disabled(!canGeneratePanorama)
+                if openAIKey.isEmpty {
+                    Text("Add an OpenAI key above.")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+            }
+
+            if let warning = panoramaWarning {
+                Label(warning, systemImage: "exclamationmark.triangle.fill")
+                    .font(.caption)
+                    .foregroundStyle(.black)
+                    .padding(8)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .background(Color.yellow.opacity(0.85), in: RoundedRectangle(cornerRadius: 8))
+            }
+        }
+    }
+
+    private var canGeneratePanorama: Bool {
+        !openAIKey.isEmpty
+            && !isGeneratingPanorama
+            && !panoramaPrompt.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    }
+
+    private var panoramaPromptBinding: Binding<String> {
+        Binding(
+            get: { panoramaPrompt },
+            set: { newValue in
+                if newValue.count > Self.panoramaPromptLimit {
+                    panoramaPrompt = String(newValue.prefix(Self.panoramaPromptLimit))
+                } else {
+                    panoramaPrompt = newValue
+                }
+            }
+        )
+    }
+
+    private var panoramaErrorPresented: Binding<Bool> {
+        Binding(
+            get: { panoramaError != nil },
+            set: { presented in if !presented { panoramaError = nil } }
+        )
+    }
+
     private var idleSection: some View {
         Section("Agent Detection") {
             VStack(alignment: .leading, spacing: 8) {
@@ -196,6 +283,43 @@ private struct SettingsForm: View {
         geminiModelMode = GeminiModelMode.mode(for: settings.geminiModel)
         if geminiModelMode == .custom {
             customGeminiModel = settings.geminiModel
+        }
+        if panoramaStore.activeFilename != settings.activePanoramaFilename {
+            panoramaStore.setActive(filename: settings.activePanoramaFilename)
+        }
+    }
+
+    private func generatePanorama() async {
+        let prompt = panoramaPrompt.trimmingCharacters(in: .whitespacesAndNewlines)
+        let key = openAIKey
+        guard !prompt.isEmpty, !key.isEmpty else { return }
+        isGeneratingPanorama = true
+        panoramaWarning = nil
+        panoramaError = nil
+        defer { isGeneratingPanorama = false }
+        do {
+            let result = try await imageClient.generatePanorama(prompt: prompt, apiKey: key)
+            let filename = try panoramaStore.save(pngBytes: result.pngBytes)
+            panoramaStore.setActive(filename: filename)
+            settings.activePanoramaFilename = filename
+            panoramaWarning = result.warning
+        } catch let error as OpenAIImageClientError {
+            panoramaError = describe(error)
+        } catch {
+            panoramaError = error.localizedDescription
+        }
+    }
+
+    private func describe(_ error: OpenAIImageClientError) -> String {
+        switch error {
+        case .invalidResponse:
+            return "Invalid response from OpenAI."
+        case .http(let status, let message):
+            return "HTTP \(status): \(message)"
+        case .missingImageData:
+            return "OpenAI returned no image data."
+        case .base64DecodeFailed:
+            return "Could not decode the returned image."
         }
     }
 
