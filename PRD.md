@@ -324,7 +324,7 @@ vmux/                              # Xcode project root
   - **Acceptance**: Unit test against a stubbed `URLSessionWebSocketTask` (or fake URL session) asserts the setup message body is correct and that received `inputTranscription` frames produce `TranscriptEvent.partial` values. Manual: with a real key, opening a session reaches `setupComplete` within 2 s.
   - **Depends on**: T-006, T-009
 
-- [ ] **T-016b — AudioFormatConverter + SpeechCoordinator**
+- [x] **T-016b — AudioFormatConverter + SpeechCoordinator**
   - **Why**: Connect mic → Gemini → focused tab.
   - **Do**:
     - `AudioFormatConverter`: wraps one `AVAudioConverter` configured from the input node's native format → PCM16, 16 kHz, mono, little-endian. `convert(_ buffer: AVAudioPCMBuffer) -> Data` returns the raw bytes ready to send.

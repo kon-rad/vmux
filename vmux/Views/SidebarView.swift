@@ -49,6 +49,27 @@ struct SidebarView: View {
         .sheet(isPresented: $showingNewProjectSheet) {
             NewProjectSheet()
         }
+        .task {
+            bootstrapSpeechCoordinator()
+        }
+    }
+
+    private func bootstrapSpeechCoordinator() {
+        let context = modelContext
+        let keychain = KeychainService()
+        SpeechCoordinator.shared.credentialsProvider = {
+            let settings = try? context.fetch(FetchDescriptor<AppSettings>()).first
+            guard let settings else { return nil }
+            let model = settings.geminiModel
+            guard !model.isEmpty,
+                  !settings.geminiKeychainRef.isEmpty,
+                  let key = try? keychain.load(for: settings.geminiKeychainRef),
+                  !key.isEmpty else {
+                return nil
+            }
+            return SpeechCredentials(apiKey: key, model: model)
+        }
+        SpeechCoordinator.shared.start()
     }
 
     private var projectsSection: some View {
