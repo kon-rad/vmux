@@ -254,7 +254,7 @@ vmux/                              # Xcode project root
 
 ### Phase 1 — Sidebar, Projects, Settings shell
 
-- [ ] **T-006 — KeychainService**
+- [x] **T-006 — KeychainService**
   - **Why**: Needed before any auth-storing UI.
   - **Do**: Implement `save(_ secret: String, for ref: String)`, `load(for ref: String) -> String?`, `delete(for ref: String)` using `SecItemAdd/Copy/Delete` with `kSecClassGenericPassword`, `kSecAttrService = "vmux"`, `kSecAttrAccount = ref`.
   - **Acceptance**: Unit test round-trips a secret. Delete removes it. Loading missing returns nil.
