@@ -298,7 +298,7 @@ vmux/                              # Xcode project root
   - **Acceptance**: Open a tab against a real SSH server, type commands, see output. Close + reopen the **window** — session continues. Delete the **tab** from sidebar — session ends, window closes, Tab gone after relaunch.
   - **Depends on**: T-011, T-007
 
-- [ ] **T-013 — ActivityMonitor + isRunning**
+- [x] **T-013 — ActivityMonitor + isRunning**
   - **Why**: Required for "detect when agent run finished".
   - **Do**: One `ActivityMonitor` per `Tab`, started in `TerminalSessionRegistry` when a session is first created and stopped when it's torn down. 500ms timer. On every `lastByteAt` change set `tab.isRunning = true` and `tab.lastActivityAt = lastByteAt`. When `Date.now - lastByteAt > AppSettings.idleThresholdSeconds` AND `isRunning == true`, set `isRunning = false`, fire `AudioServicesPlaySystemSound(1004)`, persist the SwiftData change.
   - **Acceptance**: With a tab open running `sleep 5 && echo done`, `isRunning` becomes true, then false ~3s after `done`. System sound audible. `lastActivityAt` updates while the command runs.

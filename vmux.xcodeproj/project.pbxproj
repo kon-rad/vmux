@@ -13,12 +13,14 @@
 		11166ABB6E4E42A851CDF181 /* SwiftPMImportCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1CB298AC393794663C8525 /* SwiftPMImportCheck.swift */; };
 		1124A5F0FD5190BE4E2EDF55 /* vmuxApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8681C94185E3883E494962 /* vmuxApp.swift */; };
 		2E98139ECD0814C8888B1EB7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2184BC02AA6BF4A229B25755 /* Preview Assets.xcassets */; };
+		39B88BC7E296BC4770B98221 /* ActivityMonitorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B72783E3944F373A05497C /* ActivityMonitorTests.swift */; };
 		41660C88513570298A02BC25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE0EC05648D477D1739A6A01 /* Assets.xcassets */; };
 		52C5C4FD38D298E7DB423DFA /* SSHConnectionManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3E13E8E8FB2809FCFE86B6 /* SSHConnectionManagerTests.swift */; };
 		5A190596DED7EB8BF161D9A5 /* NewProjectSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A6C6E47A1384A5B0D69CCD /* NewProjectSheet.swift */; };
 		6BA349DA568D7AC430DC6EAA /* KeychainServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F99EEF4D931FECE01EFBB9 /* KeychainServiceTests.swift */; };
 		8AF632D8C218B518D7AE4D2B /* Citadel in Frameworks */ = {isa = PBXBuildFile; productRef = 3919FF17FB2FDC39C6D2E5AF /* Citadel */; };
 		8AFE12FF3AF039FBE07DF9CF /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DC5F45FF54964C40C07C1F /* SidebarView.swift */; };
+		925F2019804B40A741F4EDDB /* ActivityMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15AFE20DBADB548B789300B /* ActivityMonitor.swift */; };
 		9363377C08F3437508792EC8 /* vmuxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFBA952DFD394BD983ED4D57 /* vmuxTests.swift */; };
 		9F6C46BCA2D687495DBD5D89 /* SSHConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7941718287B63E0FAFC3582 /* SSHConnectionManager.swift */; };
 		A0688372FBB93E1E61045266 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97AFFB50C561905208212B1 /* SettingsView.swift */; };
@@ -64,9 +66,11 @@
 		A894E664F81F3B50F2289977 /* SkydomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkydomeView.swift; sourceTree = "<group>"; };
 		AFBA952DFD394BD983ED4D57 /* vmuxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vmuxTests.swift; sourceTree = "<group>"; };
 		B2823173AD96199430F4504D /* TerminalWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalWindowView.swift; sourceTree = "<group>"; };
+		C15AFE20DBADB548B789300B /* ActivityMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityMonitor.swift; sourceTree = "<group>"; };
 		C97AFFB50C561905208212B1 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		D8A6C6E47A1384A5B0D69CCD /* NewProjectSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProjectSheet.swift; sourceTree = "<group>"; };
 		E4DC5F45FF54964C40C07C1F /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
+		E6B72783E3944F373A05497C /* ActivityMonitorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityMonitorTests.swift; sourceTree = "<group>"; };
 		E6F99EEF4D931FECE01EFBB9 /* KeychainServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainServiceTests.swift; sourceTree = "<group>"; };
 		EE0EC05648D477D1739A6A01 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EF829441E64BA83D6A6341D6 /* vmuxTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = vmuxTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,6 +100,7 @@
 		716238CFC48A0871CFF5550E /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				C15AFE20DBADB548B789300B /* ActivityMonitor.swift */,
 				78737628860001B6A742952B /* CitadelShellChannel.swift */,
 				33C1B45D444ACE0B59CAD4A6 /* KeychainService.swift */,
 				A7941718287B63E0FAFC3582 /* SSHConnectionManager.swift */,
@@ -117,6 +122,7 @@
 		B903495ECCC86D1A5D0FA68A /* vmuxTests */ = {
 			isa = PBXGroup;
 			children = (
+				E6B72783E3944F373A05497C /* ActivityMonitorTests.swift */,
 				E6F99EEF4D931FECE01EFBB9 /* KeychainServiceTests.swift */,
 				90663959B1DC13F503FB0435 /* ModelsTests.swift */,
 				8C3E13E8E8FB2809FCFE86B6 /* SSHConnectionManagerTests.swift */,
@@ -282,6 +288,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39B88BC7E296BC4770B98221 /* ActivityMonitorTests.swift in Sources */,
 				6BA349DA568D7AC430DC6EAA /* KeychainServiceTests.swift in Sources */,
 				D9025D2CBEAB9BD3D3D80F1D /* ModelsTests.swift in Sources */,
 				52C5C4FD38D298E7DB423DFA /* SSHConnectionManagerTests.swift in Sources */,
@@ -294,6 +301,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				925F2019804B40A741F4EDDB /* ActivityMonitor.swift in Sources */,
 				B3B037259AE3D44A4A9ABF71 /* AppSettings.swift in Sources */,
 				BB87BDC4CE63CC1762A0FE17 /* CitadelShellChannel.swift in Sources */,
 				F1D1E7604878B91B4E3ECC0E /* KeychainService.swift in Sources */,

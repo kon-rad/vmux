@@ -1,4 +1,5 @@
 import Foundation
+import SwiftData
 
 enum TerminalSessionRegistryError: Error, CustomStringConvertible {
     case projectNotResolvable
@@ -21,6 +22,7 @@ final class TerminalSessionRegistry {
 
     private var sessions: [UUID: TerminalSession] = [:]
     private var inflight: [UUID: Task<TerminalSession, any Error>] = [:]
+    private var monitors: [UUID: ActivityMonitor] = [:]
 
     private let connectionManager: SSHConnectionManager
 
@@ -48,6 +50,7 @@ final class TerminalSessionRegistry {
         let tabID = tab.id
         let projectID = project.id
         let connectionManager = self.connectionManager
+        let modelContext = tab.modelContext
 
         let task = Task<TerminalSession, any Error> {
             let client = try await connectionManager.client(for: info)
@@ -61,6 +64,20 @@ final class TerminalSessionRegistry {
             let session = try await task.value
             sessions[tab.id] = session
             inflight[tab.id] = nil
+            if let modelContext, monitors[tab.id] == nil {
+                let monitor = ActivityMonitor(
+                    tabID: tab.id,
+                    session: session,
+                    modelContext: modelContext,
+                    idleThresholdProvider: { [modelContext] in
+                        let descriptor = FetchDescriptor<AppSettings>()
+                        let row = try? modelContext.fetch(descriptor).first
+                        return TimeInterval(row?.idleThresholdSeconds ?? 3)
+                    }
+                )
+                monitor.start()
+                monitors[tab.id] = monitor
+            }
             return session
         } catch {
             inflight[tab.id] = nil
@@ -72,6 +89,9 @@ final class TerminalSessionRegistry {
     func remove(tabID: UUID) async {
         if let task = inflight.removeValue(forKey: tabID) {
             task.cancel()
+        }
+        if let monitor = monitors.removeValue(forKey: tabID) {
+            monitor.stop()
         }
         guard let session = sessions.removeValue(forKey: tabID) else { return }
         await session.close()
