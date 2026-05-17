@@ -36,6 +36,7 @@
 		DE3FBC37E1774861BBAB1422 /* SwiftTerm+SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AED1C032FA8602DF21203F4 /* SwiftTerm+SwiftUI.swift */; };
 		DFF6095625208F2518D2AEF3 /* TerminalWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2823173AD96199430F4504D /* TerminalWindowView.swift */; };
 		E3B713426383B460AEEE4B78 /* TerminalSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509BCBFC05A7D3AC5D104A5B /* TerminalSessionTests.swift */; };
+		E4243CC00ECD728779FF2C27 /* PanoramaPickerGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D714D80EBE47862E4A146D96 /* PanoramaPickerGrid.swift */; };
 		E4B5CB8E3861F39F2E2CB2AD /* StubURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1AF9657CAEA8CBE32CCC52A /* StubURLProtocol.swift */; };
 		F1D1E7604878B91B4E3ECC0E /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C1B45D444ACE0B59CAD4A6 /* KeychainService.swift */; };
 /* End PBXBuildFile section */
@@ -75,6 +76,7 @@
 		B2823173AD96199430F4504D /* TerminalWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalWindowView.swift; sourceTree = "<group>"; };
 		C02989377831BEB807F32800 /* OpenAIImageClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIImageClientTests.swift; sourceTree = "<group>"; };
 		C97AFFB50C561905208212B1 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		D714D80EBE47862E4A146D96 /* PanoramaPickerGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanoramaPickerGrid.swift; sourceTree = "<group>"; };
 		D8A6C6E47A1384A5B0D69CCD /* NewProjectSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProjectSheet.swift; sourceTree = "<group>"; };
 		DCD8E01AE72B44AB97403CEF /* OpenAIImageClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIImageClient.swift; sourceTree = "<group>"; };
 		E1AF9657CAEA8CBE32CCC52A /* StubURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubURLProtocol.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				D8A6C6E47A1384A5B0D69CCD /* NewProjectSheet.swift */,
+				D714D80EBE47862E4A146D96 /* PanoramaPickerGrid.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -321,6 +324,7 @@
 				F1D1E7604878B91B4E3ECC0E /* KeychainService.swift in Sources */,
 				5A190596DED7EB8BF161D9A5 /* NewProjectSheet.swift in Sources */,
 				7BA4357C811A16C695AFE629 /* OpenAIImageClient.swift in Sources */,
+				E4243CC00ECD728779FF2C27 /* PanoramaPickerGrid.swift in Sources */,
 				486ACC0FE2E62866221F6FC4 /* PanoramaStore.swift in Sources */,
 				C3BA751B18C8F0A7BE206E02 /* Project.swift in Sources */,
 				9F6C46BCA2D687495DBD5D89 /* SSHConnectionManager.swift in Sources */,

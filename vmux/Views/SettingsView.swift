@@ -200,6 +200,11 @@ private struct SettingsForm: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .background(Color.yellow.opacity(0.85), in: RoundedRectangle(cornerRadius: 8))
             }
+
+            PanoramaPickerGrid(store: panoramaStore) { filename in
+                panoramaStore.setActive(filename: filename)
+                settings.activePanoramaFilename = filename
+            }
         }
     }
 

@@ -375,7 +375,7 @@ vmux/                              # Xcode project root
   - **Acceptance**: Entering a prompt and tapping Generate produces a new file in the panoramas grid and switches the skydome to it within ~60s. Warnings surface visibly when present.
   - **Depends on**: T-021, T-020, T-009
 
-- [ ] **T-023 — Panorama picker grid**
+- [x] **T-023 — Panorama picker grid**
   - **Why**: Multiple saved panoramas.
   - **Do**: Grid in Settings rendering all panoramas with `Image(uiImage:)` thumbnails (~120pt). Tap = set active. Long-press = delete (with confirm). Active one has a check overlay.
   - **Acceptance**: Generating two panoramas yields two thumbnails. Tapping each switches the skydome. Deleting removes the file and the thumbnail.
