@@ -357,7 +357,7 @@ vmux/                              # Xcode project root
   - **Acceptance**: Launching app and entering immersive space shows a panorama background visible behind the windows.
   - **Depends on**: T-005
 
-- [ ] **T-020 — PanoramaStore + reload-on-change**
+- [x] **T-020 — PanoramaStore + reload-on-change**
   - **Why**: Connect Settings choices to the skydome.
   - **Do**: `PanoramaStore` lists PNGs in `Documents/panoramas/`, can save bytes to a uuid filename, can delete. Publishes `activeImage: UIImage?` driven by `AppSettings.activePanoramaFilename`. `SkydomeView` swaps texture when `activeImage` changes.
   - **Acceptance**: Manually copying a PNG into the Documents/panoramas dir and setting `activePanoramaFilename` updates the skydome live.

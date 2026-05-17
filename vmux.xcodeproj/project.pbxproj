@@ -14,6 +14,7 @@
 		1124A5F0FD5190BE4E2EDF55 /* vmuxApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8681C94185E3883E494962 /* vmuxApp.swift */; };
 		2E98139ECD0814C8888B1EB7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2184BC02AA6BF4A229B25755 /* Preview Assets.xcassets */; };
 		41660C88513570298A02BC25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE0EC05648D477D1739A6A01 /* Assets.xcassets */; };
+		486ACC0FE2E62866221F6FC4 /* PanoramaStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2466CC8D345A160C11B53C26 /* PanoramaStore.swift */; };
 		52C5C4FD38D298E7DB423DFA /* SSHConnectionManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3E13E8E8FB2809FCFE86B6 /* SSHConnectionManagerTests.swift */; };
 		5A190596DED7EB8BF161D9A5 /* NewProjectSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A6C6E47A1384A5B0D69CCD /* NewProjectSheet.swift */; };
 		6BA349DA568D7AC430DC6EAA /* KeychainServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F99EEF4D931FECE01EFBB9 /* KeychainServiceTests.swift */; };
@@ -27,6 +28,7 @@
 		B3B037259AE3D44A4A9ABF71 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CA38E94DD5617CA901751F /* AppSettings.swift */; };
 		BB87BDC4CE63CC1762A0FE17 /* CitadelShellChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78737628860001B6A742952B /* CitadelShellChannel.swift */; };
 		C3BA751B18C8F0A7BE206E02 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C3914ED9062F3CA9C3AA6C /* Project.swift */; };
+		C7A815DBBDCD3448F8A8D7F3 /* PanoramaStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA6E5AF47FF7206820AD450 /* PanoramaStoreTests.swift */; };
 		D9025D2CBEAB9BD3D3D80F1D /* ModelsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90663959B1DC13F503FB0435 /* ModelsTests.swift */; };
 		DA79883C831296B54EE11CF7 /* TerminalSessionRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2E2E88F8FD9455078597D7 /* TerminalSessionRegistry.swift */; };
 		DE3FBC37E1774861BBAB1422 /* SwiftTerm+SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AED1C032FA8602DF21203F4 /* SwiftTerm+SwiftUI.swift */; };
@@ -49,6 +51,8 @@
 		14CA38E94DD5617CA901751F /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		1E199A4016A5A3D80DA2F613 /* vmux.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = vmux.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2184BC02AA6BF4A229B25755 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		2466CC8D345A160C11B53C26 /* PanoramaStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanoramaStore.swift; sourceTree = "<group>"; };
+		2EA6E5AF47FF7206820AD450 /* PanoramaStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanoramaStoreTests.swift; sourceTree = "<group>"; };
 		33C1B45D444ACE0B59CAD4A6 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		42CDE242E62FCD506036C5CA /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
 		509BCBFC05A7D3AC5D104A5B /* TerminalSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalSessionTests.swift; sourceTree = "<group>"; };
@@ -100,6 +104,7 @@
 			children = (
 				78737628860001B6A742952B /* CitadelShellChannel.swift */,
 				33C1B45D444ACE0B59CAD4A6 /* KeychainService.swift */,
+				2466CC8D345A160C11B53C26 /* PanoramaStore.swift */,
 				A7941718287B63E0FAFC3582 /* SSHConnectionManager.swift */,
 				911A4B0CC0F37AE1230A6DD3 /* TerminalSession.swift */,
 				6B2E2E88F8FD9455078597D7 /* TerminalSessionRegistry.swift */,
@@ -121,6 +126,7 @@
 			children = (
 				E6F99EEF4D931FECE01EFBB9 /* KeychainServiceTests.swift */,
 				90663959B1DC13F503FB0435 /* ModelsTests.swift */,
+				2EA6E5AF47FF7206820AD450 /* PanoramaStoreTests.swift */,
 				80AE8F56F6B5A0214617AB53 /* SkydomeBuilderTests.swift */,
 				8C3E13E8E8FB2809FCFE86B6 /* SSHConnectionManagerTests.swift */,
 				509BCBFC05A7D3AC5D104A5B /* TerminalSessionTests.swift */,
@@ -287,6 +293,7 @@
 			files = (
 				6BA349DA568D7AC430DC6EAA /* KeychainServiceTests.swift in Sources */,
 				D9025D2CBEAB9BD3D3D80F1D /* ModelsTests.swift in Sources */,
+				C7A815DBBDCD3448F8A8D7F3 /* PanoramaStoreTests.swift in Sources */,
 				52C5C4FD38D298E7DB423DFA /* SSHConnectionManagerTests.swift in Sources */,
 				9E93967B29393D0925FFEBD1 /* SkydomeBuilderTests.swift in Sources */,
 				E3B713426383B460AEEE4B78 /* TerminalSessionTests.swift in Sources */,
@@ -302,6 +309,7 @@
 				BB87BDC4CE63CC1762A0FE17 /* CitadelShellChannel.swift in Sources */,
 				F1D1E7604878B91B4E3ECC0E /* KeychainService.swift in Sources */,
 				5A190596DED7EB8BF161D9A5 /* NewProjectSheet.swift in Sources */,
+				486ACC0FE2E62866221F6FC4 /* PanoramaStore.swift in Sources */,
 				C3BA751B18C8F0A7BE206E02 /* Project.swift in Sources */,
 				9F6C46BCA2D687495DBD5D89 /* SSHConnectionManager.swift in Sources */,
 				A0688372FBB93E1E61045266 /* SettingsView.swift in Sources */,

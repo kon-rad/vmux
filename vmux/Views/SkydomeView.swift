@@ -1,11 +1,25 @@
 import SwiftUI
 import RealityKit
+import UIKit
 
 struct SkydomeView: View {
+    @State private var store: PanoramaStore = .shared
+    @State private var skydomeEntity: ModelEntity?
+
     var body: some View {
         RealityView { content in
-            let entity = await SkydomeBuilder.makeSkydome()
+            let entity = await SkydomeBuilder.makeSkydome(image: store.activeImage)
+            entity.name = SkydomeBuilder.entityName
             content.add(entity)
+            skydomeEntity = entity
+        }
+        .onChange(of: store.activeFilename) { _, _ in
+            let entity = skydomeEntity
+            let image = store.activeImage
+            Task { @MainActor in
+                guard let entity else { return }
+                await SkydomeBuilder.applyMaterial(to: entity, image: image)
+            }
         }
     }
 }
@@ -13,10 +27,11 @@ struct SkydomeView: View {
 enum SkydomeBuilder {
     static let radius: Float = 30
     static let placeholderAssetName = "PlaceholderPanorama"
+    static let entityName = "skydome"
 
     @MainActor
-    static func makeSkydome() async -> Entity {
-        let entity = Entity()
+    static func makeSkydome(image: UIImage? = nil) async -> ModelEntity {
+        let entity = ModelEntity()
         let mesh: MeshResource
         do {
             mesh = try inwardFacingSphere(radius: radius)
@@ -24,22 +39,42 @@ enum SkydomeBuilder {
             mesh = .generateSphere(radius: radius)
             entity.scale = SIMD3<Float>(-1, 1, 1)
         }
-
-        var material = UnlitMaterial()
-        if let texture = await loadPlaceholderTexture() {
-            material.color = .init(texture: .init(texture))
-        } else {
-            material.color = .init(tint: .darkGray)
-        }
-
+        let material = await makeMaterial(image: image)
         entity.components.set(ModelComponent(mesh: mesh, materials: [material]))
         return entity
     }
 
     @MainActor
+    static func applyMaterial(to entity: ModelEntity, image: UIImage?) async {
+        let material = await makeMaterial(image: image)
+        guard var component = entity.components[ModelComponent.self] else { return }
+        component.materials = [material]
+        entity.components.set(component)
+    }
+
+    @MainActor
+    static func makeMaterial(image: UIImage?) async -> UnlitMaterial {
+        var material = UnlitMaterial()
+        if let image, let texture = await texture(for: image) {
+            material.color = .init(texture: .init(texture))
+        } else if let placeholder = await loadPlaceholderTexture() {
+            material.color = .init(texture: .init(placeholder))
+        } else {
+            material.color = .init(tint: .darkGray)
+        }
+        return material
+    }
+
+    @MainActor
     private static func loadPlaceholderTexture() async -> TextureResource? {
+        try? await TextureResource(named: placeholderAssetName)
+    }
+
+    @MainActor
+    private static func texture(for image: UIImage) async -> TextureResource? {
+        guard let cgImage = image.cgImage else { return nil }
         do {
-            return try await TextureResource(named: placeholderAssetName)
+            return try await TextureResource(image: cgImage, options: .init(semantic: .color))
         } catch {
             return nil
         }
