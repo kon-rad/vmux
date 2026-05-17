@@ -51,8 +51,13 @@ protocol AudioPipelineHandle: AnyObject {
 final class SpeechCoordinator {
     static let shared = SpeechCoordinator()
 
-    /// Latest accumulated partial transcript. Cleared on focus change and on
-    /// `clearTranscript()` (which T-018 will call after a commit). Gemini emits
+    /// Trailing keyword triggers that commit the buffer immediately. Both have
+    /// a leading space so an utterance like "send me a file" does NOT commit
+    /// while "echo hi send" does.
+    static let triggerWords: [String] = [" send", " enter"]
+
+    /// Latest accumulated partial transcript. Cleared on focus change, on
+    /// `clearTranscript()`, and after a commit (T-018). Gemini emits
     /// incremental fragments, so each event appends.
     private(set) var partialTranscript: String = ""
 
@@ -62,6 +67,10 @@ final class SpeechCoordinator {
 
     /// True while a Gemini Live session is open and the mic tap is running.
     private(set) var isStreaming: Bool = false
+
+    /// Pause length (seconds) without new transcript fragments that forces a
+    /// silence commit. Injectable for tests to drive the timer fast.
+    @ObservationIgnored var silenceInterval: TimeInterval = 1.0
 
     /// Supplies the active Gemini credentials. Wired by the app at startup so
     /// the coordinator stays decoupled from SwiftData and Keychain types.
@@ -79,6 +88,13 @@ final class SpeechCoordinator {
         AVAudioPipeline.start(forwardingTo: session)
     }
 
+    /// Forwards committed transcript bytes to a terminal session. Default
+    /// resolves the live session via `TerminalSessionRegistry.shared` so
+    /// production wiring needs no extra plumbing; tests inject a recorder.
+    @ObservationIgnored var commitDelivery: @MainActor (UUID, Data) -> Void = { tabID, data in
+        TerminalSessionRegistry.shared.sessionIfExists(tabID: tabID)?.send(data)
+    }
+
     @ObservationIgnored var micPermission: any MicPermissionRequesting = AVAudioApplicationMicPermission()
 
     @ObservationIgnored private var currentSession: GeminiLiveSession?
@@ -87,6 +103,7 @@ final class SpeechCoordinator {
     @ObservationIgnored private var lastFocusedTabID: UUID?
     @ObservationIgnored private var observationStarted = false
     @ObservationIgnored private var focusChangeTask: Task<Void, Never>?
+    @ObservationIgnored private var silenceCommitTask: Task<Void, Never>?
 
     init() {}
 
@@ -100,10 +117,11 @@ final class SpeechCoordinator {
         scheduleFocusChange(initial)
     }
 
-    /// Called by T-018 after committing a transcript to the focused tab.
     /// Resets the buffer but keeps the WebSocket open so the next utterance
-    /// streams onto the existing session.
+    /// streams onto the existing session. Used by the auto-commit path in
+    /// `commit(text:)` and also exposed for manual cancellation.
     func clearTranscript() {
+        cancelSilenceTimer()
         partialTranscript = ""
     }
 
@@ -147,6 +165,7 @@ final class SpeechCoordinator {
                 switch event {
                 case .partial(let fragment):
                     self.partialTranscript.append(fragment)
+                    self.onPartialAppended()
                 }
             }
         }
@@ -157,6 +176,7 @@ final class SpeechCoordinator {
 
     private func tearDown() async {
         isStreaming = false
+        cancelSilenceTimer()
         transcriptTask?.cancel()
         transcriptTask = nil
         if let handle = audioHandle {
@@ -168,6 +188,59 @@ final class SpeechCoordinator {
             currentSession = nil
             await session.close()
         }
+    }
+
+    // MARK: - Commit logic (T-018)
+
+    /// Runs after every appended partial fragment. Either commits immediately
+    /// when the buffer ends in a trigger word, or (re)arms the silence timer.
+    private func onPartialAppended() {
+        let lower = partialTranscript.lowercased()
+        for trigger in Self.triggerWords {
+            if lower.hasSuffix(trigger) {
+                let stripped = String(partialTranscript.dropLast(trigger.count))
+                commit(text: stripped)
+                return
+            }
+        }
+        scheduleSilenceCommit()
+    }
+
+    private func scheduleSilenceCommit() {
+        cancelSilenceTimer()
+        let interval = silenceInterval
+        silenceCommitTask = Task { @MainActor [weak self] in
+            let nanos = UInt64(max(0, interval) * 1_000_000_000)
+            try? await Task.sleep(nanoseconds: nanos)
+            if Task.isCancelled { return }
+            guard let self else { return }
+            self.commit(text: self.partialTranscript)
+        }
+    }
+
+    private func cancelSilenceTimer() {
+        silenceCommitTask?.cancel()
+        silenceCommitTask = nil
+    }
+
+    /// Send `text + \r` to the currently focused tab and reset the buffer.
+    /// Reads `FocusStore.shared.focusedTabID` **at commit time** so a focus
+    /// change during the silence wait routes the commit to the new tab. The
+    /// Gemini Live WebSocket is intentionally left open.
+    private func commit(text rawText: String) {
+        cancelSilenceTimer()
+        let trimmed = rawText.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else {
+            partialTranscript = ""
+            return
+        }
+        guard let focusedID = FocusStore.shared.focusedTabID else {
+            partialTranscript = ""
+            return
+        }
+        let payload = Data((trimmed + "\r").utf8)
+        commitDelivery(focusedID, payload)
+        partialTranscript = ""
     }
 
     private func observeFocus() {

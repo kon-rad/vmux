@@ -343,7 +343,7 @@ vmux/                              # Xcode project root
   - **Acceptance**: Pill appears on the focused window while speaking; matches partial transcript live.
   - **Depends on**: T-016b
 
-- [ ] **T-018 — Commit on pause / keyword**
+- [x] **T-018 — Commit on pause / keyword**
   - **Why**: Send transcripts to the shell.
   - **Do**: In `SpeechCoordinator`, debounce: if `partialTranscript` has had no new fragment for 1.0 s OR its trailing words match " send" / " enter" (case-insensitive), strip the trigger word and write `text + "\r"` to the **currently** focused tab's `TerminalSession.send(...)` (re-read `FocusStore.focusedTabID` at commit time). Clear `partialTranscript`. **Do not** close or restart the Gemini Live session — the buffer simply resets and the next fragment starts a new utterance.
   - **Acceptance**: Focus a tab, say "list home directory send" → terminal receives `list home directory` + Enter. Saying "echo hello" + 1 s silence → same effect without the trigger word. Two consecutive utterances within the same focused session both commit correctly without reopening the WebSocket.

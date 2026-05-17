@@ -156,6 +156,216 @@ final class SpeechCoordinatorTests: XCTestCase {
         XCTAssertNil(coordinator.lastError)
     }
 
+    // MARK: - T-018 commit-on-pause / keyword
+
+    func test_trailingSend_commitsImmediately_andStripsTriggerWord() async throws {
+        let stub = StubGeminiChannel()
+        let recorder = CommitRecorder()
+        let coordinator = makeCommitCoordinator(stub: stub, recorder: recorder)
+
+        let tabID = UUID()
+        FocusStore.shared.focusedTabID = tabID
+
+        try await openSession(coordinator: coordinator, stub: stub, tabID: tabID)
+
+        await stub.push(.text(transcriptFrame("list home directory")))
+        await stub.push(.text(transcriptFrame(" send")))
+
+        try await waitFor(timeout: 1.0) { recorder.count == 1 }
+        XCTAssertEqual(recorder.entries.first?.tabID, tabID)
+        XCTAssertEqual(recorder.entries.first?.data, Data("list home directory\r".utf8))
+        XCTAssertEqual(coordinator.partialTranscript, "")
+        XCTAssertTrue(coordinator.isStreaming)
+        XCTAssertFalse(stub.didCancel, "Commit must not close the WebSocket")
+    }
+
+    func test_trailingEnter_triggersCommitToo() async throws {
+        let stub = StubGeminiChannel()
+        let recorder = CommitRecorder()
+        let coordinator = makeCommitCoordinator(stub: stub, recorder: recorder)
+
+        let tabID = UUID()
+        FocusStore.shared.focusedTabID = tabID
+        try await openSession(coordinator: coordinator, stub: stub, tabID: tabID)
+
+        await stub.push(.text(transcriptFrame("clear screen enter")))
+
+        try await waitFor(timeout: 1.0) { recorder.count == 1 }
+        XCTAssertEqual(recorder.entries.first?.data, Data("clear screen\r".utf8))
+    }
+
+    func test_triggerWord_isCaseInsensitive() async throws {
+        let stub = StubGeminiChannel()
+        let recorder = CommitRecorder()
+        let coordinator = makeCommitCoordinator(stub: stub, recorder: recorder)
+
+        let tabID = UUID()
+        FocusStore.shared.focusedTabID = tabID
+        try await openSession(coordinator: coordinator, stub: stub, tabID: tabID)
+
+        await stub.push(.text(transcriptFrame("hello SEND")))
+
+        try await waitFor(timeout: 1.0) { recorder.count == 1 }
+        XCTAssertEqual(recorder.entries.first?.data, Data("hello\r".utf8))
+    }
+
+    func test_silence_commitsBuffer_afterIdleDelay() async throws {
+        let stub = StubGeminiChannel()
+        let recorder = CommitRecorder()
+        let coordinator = makeCommitCoordinator(stub: stub, recorder: recorder)
+        coordinator.silenceInterval = 0.1
+
+        let tabID = UUID()
+        FocusStore.shared.focusedTabID = tabID
+        try await openSession(coordinator: coordinator, stub: stub, tabID: tabID)
+
+        await stub.push(.text(transcriptFrame("ls -la")))
+
+        try await waitFor(timeout: 1.0) { recorder.count == 1 }
+        XCTAssertEqual(recorder.entries.first?.tabID, tabID)
+        XCTAssertEqual(recorder.entries.first?.data, Data("ls -la\r".utf8))
+        XCTAssertEqual(coordinator.partialTranscript, "")
+        XCTAssertFalse(stub.didCancel)
+    }
+
+    func test_silence_isResetByNewFragment() async throws {
+        let stub = StubGeminiChannel()
+        let recorder = CommitRecorder()
+        let coordinator = makeCommitCoordinator(stub: stub, recorder: recorder)
+        coordinator.silenceInterval = 0.2
+
+        let tabID = UUID()
+        FocusStore.shared.focusedTabID = tabID
+        try await openSession(coordinator: coordinator, stub: stub, tabID: tabID)
+
+        await stub.push(.text(transcriptFrame("echo")))
+        try await Task.sleep(nanoseconds: 100_000_000)
+        XCTAssertEqual(recorder.count, 0, "Silence must not have fired yet")
+        await stub.push(.text(transcriptFrame(" hi")))
+
+        try await waitFor(timeout: 1.0) { recorder.count == 1 }
+        XCTAssertEqual(recorder.entries.first?.data, Data("echo hi\r".utf8))
+    }
+
+    func test_consecutiveCommits_keepWebSocketOpen() async throws {
+        let stub = StubGeminiChannel()
+        let recorder = CommitRecorder()
+        let coordinator = makeCommitCoordinator(stub: stub, recorder: recorder)
+        coordinator.silenceInterval = 0.05
+
+        let tabID = UUID()
+        FocusStore.shared.focusedTabID = tabID
+        try await openSession(coordinator: coordinator, stub: stub, tabID: tabID)
+
+        await stub.push(.text(transcriptFrame("first command")))
+        try await waitFor(timeout: 1.0) { recorder.count == 1 }
+
+        XCTAssertFalse(stub.didCancel)
+        XCTAssertTrue(coordinator.isStreaming)
+
+        await stub.push(.text(transcriptFrame("second command")))
+        try await waitFor(timeout: 1.0) { recorder.count == 2 }
+
+        XCTAssertEqual(recorder.entries[0].data, Data("first command\r".utf8))
+        XCTAssertEqual(recorder.entries[1].data, Data("second command\r".utf8))
+        XCTAssertFalse(stub.didCancel, "WebSocket must stay open across commits")
+    }
+
+    func test_commit_readsFocus_atCommitTime_notSpeechStartTime() async throws {
+        let stub = StubGeminiChannel()
+        let recorder = CommitRecorder()
+        let coordinator = makeCommitCoordinator(stub: stub, recorder: recorder)
+        coordinator.silenceInterval = 0.15
+
+        let tabA = UUID()
+        let tabB = UUID()
+        FocusStore.shared.focusedTabID = tabA
+        try await openSession(coordinator: coordinator, stub: stub, tabID: tabA)
+
+        await stub.push(.text(transcriptFrame("echo race")))
+
+        // Move focus directly via FocusStore — the coordinator's observation
+        // is not started in tests, so the session is *not* torn down. This
+        // simulates a focus race where the commit must route to the new tab.
+        FocusStore.shared.focusedTabID = tabB
+
+        try await waitFor(timeout: 1.0) { recorder.count == 1 }
+        XCTAssertEqual(recorder.entries.first?.tabID, tabB)
+        XCTAssertEqual(recorder.entries.first?.data, Data("echo race\r".utf8))
+    }
+
+    func test_focusChangeViaHandleFocusChange_dropsInFlightTranscript() async throws {
+        let stub1 = StubGeminiChannel()
+        let stub2 = StubGeminiChannel()
+        var queue: [StubGeminiChannel] = [stub1, stub2]
+        let recorder = CommitRecorder()
+
+        let coordinator = SpeechCoordinator()
+        coordinator.silenceInterval = 0.1
+        coordinator.micPermission = AlwaysGrantedMic()
+        coordinator.credentialsProvider = {
+            SpeechCredentials(apiKey: "K", model: "gemini-2.5-flash")
+        }
+        coordinator.audioPipelineStarter = { _ in NoopAudioHandle() }
+        coordinator.sessionFactory = { @MainActor creds in
+            let next = queue.removeFirst()
+            return GeminiLiveSession(
+                apiKey: creds.apiKey,
+                model: creds.model,
+                channelFactory: { _ in next }
+            )
+        }
+        coordinator.commitDelivery = { tabID, data in
+            recorder.record(tabID: tabID, data: data)
+        }
+
+        let tabA = UUID()
+        let tabB = UUID()
+
+        FocusStore.shared.focusedTabID = tabA
+        let focusA = Task { @MainActor in await coordinator.handleFocusChange(tabA) }
+        _ = try await stub1.nextSent(timeout: 1.0)
+        await stub1.push(.text("{\"setupComplete\":{}}"))
+        await focusA.value
+
+        await stub1.push(.text(transcriptFrame("half spoken")))
+        try await waitFor(timeout: 1.0) {
+            await MainActor.run { coordinator.partialTranscript == "half spoken" }
+        }
+
+        FocusStore.shared.focusedTabID = tabB
+        let focusB = Task { @MainActor in await coordinator.handleFocusChange(tabB) }
+        _ = try await stub2.nextSent(timeout: 1.0)
+        await stub2.push(.text("{\"setupComplete\":{}}"))
+        await focusB.value
+
+        // Wait long enough for any straggling silence timer to have fired.
+        try await Task.sleep(nanoseconds: 250_000_000)
+
+        XCTAssertEqual(recorder.count, 0, "Mid-utterance focus change must discard the buffer")
+        XCTAssertEqual(coordinator.partialTranscript, "")
+        XCTAssertTrue(stub1.didCancel)
+        XCTAssertFalse(stub2.didCancel)
+    }
+
+    func test_emptyBuffer_doesNotCommit() async throws {
+        let stub = StubGeminiChannel()
+        let recorder = CommitRecorder()
+        let coordinator = makeCommitCoordinator(stub: stub, recorder: recorder)
+        coordinator.silenceInterval = 0.05
+
+        let tabID = UUID()
+        FocusStore.shared.focusedTabID = tabID
+        try await openSession(coordinator: coordinator, stub: stub, tabID: tabID)
+
+        // Push only whitespace — appending it should not produce a commit.
+        await stub.push(.text(transcriptFrame("   ")))
+
+        try await Task.sleep(nanoseconds: 200_000_000)
+        XCTAssertEqual(recorder.count, 0)
+        XCTAssertEqual(coordinator.partialTranscript, "")
+    }
+
     // MARK: - Helpers
 
     private func makeCoordinator(stub: StubGeminiChannel, granted: Bool) -> SpeechCoordinator {
@@ -182,6 +392,67 @@ final class SpeechCoordinatorTests: XCTestCase {
             try await Task.sleep(nanoseconds: 10_000_000)
         }
         XCTFail("Condition did not become true within \(timeout)s")
+    }
+
+    private func waitFor(timeout: TimeInterval, _ condition: @escaping @MainActor () -> Bool) async throws {
+        let deadline = Date().addingTimeInterval(timeout)
+        while Date() < deadline {
+            if condition() { return }
+            try await Task.sleep(nanoseconds: 10_000_000)
+        }
+        XCTFail("Condition did not become true within \(timeout)s")
+    }
+
+    private func makeCommitCoordinator(stub: StubGeminiChannel, recorder: CommitRecorder) -> SpeechCoordinator {
+        let coordinator = SpeechCoordinator()
+        coordinator.micPermission = AlwaysGrantedMic()
+        coordinator.credentialsProvider = {
+            SpeechCredentials(apiKey: "K", model: "gemini-2.5-flash")
+        }
+        coordinator.audioPipelineStarter = { _ in NoopAudioHandle() }
+        coordinator.sessionFactory = { @MainActor creds in
+            GeminiLiveSession(
+                apiKey: creds.apiKey,
+                model: creds.model,
+                channelFactory: { _ in stub }
+            )
+        }
+        coordinator.commitDelivery = { tabID, data in
+            recorder.record(tabID: tabID, data: data)
+        }
+        return coordinator
+    }
+
+    private func openSession(
+        coordinator: SpeechCoordinator,
+        stub: StubGeminiChannel,
+        tabID: UUID
+    ) async throws {
+        let task = Task { @MainActor in await coordinator.handleFocusChange(tabID) }
+        _ = try await stub.nextSent(timeout: 1.0)
+        await stub.push(.text("{\"setupComplete\":{}}"))
+        await task.value
+    }
+
+    private func transcriptFrame(_ text: String) -> String {
+        let escaped = text
+            .replacingOccurrences(of: "\\", with: "\\\\")
+            .replacingOccurrences(of: "\"", with: "\\\"")
+        return "{\"serverContent\":{\"inputTranscription\":{\"text\":\"\(escaped)\"}}}"
+    }
+}
+
+@MainActor
+final class CommitRecorder {
+    struct Entry: Sendable {
+        let tabID: UUID
+        let data: Data
+    }
+    private(set) var entries: [Entry] = []
+    var count: Int { entries.count }
+
+    func record(tabID: UUID, data: Data) {
+        entries.append(Entry(tabID: tabID, data: data))
     }
 }
 
