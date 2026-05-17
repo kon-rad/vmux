@@ -14,6 +14,17 @@ protocol TerminalShellChannel: AnyObject, Sendable {
     func close() async
 }
 
+/// Lifecycle state of a `TerminalSession`. Drives the disconnect banner in
+/// `TerminalWindowView` (T-024). Transitions are:
+///   `.connecting` → `.connected` once the first byte arrives from the shell.
+///   any → `.disconnected(reason:)` when `SSHConnectionManager` reports the
+///   underlying client closed, or when the channel's inbound stream ends.
+enum SessionStatus: Equatable, Sendable {
+    case connecting
+    case connected
+    case disconnected(reason: String)
+}
+
 @MainActor
 @Observable
 final class TerminalSession {
@@ -26,6 +37,7 @@ final class TerminalSession {
     @ObservationIgnored let terminalView: TerminalView
 
     private(set) var lastByteAt: Date
+    private(set) var status: SessionStatus = .connecting
 
     @ObservationIgnored private let channel: any TerminalShellChannel
     @ObservationIgnored private let viewDelegate: TerminalViewDelegateAdapter
@@ -75,6 +87,16 @@ final class TerminalSession {
         await channel.close()
     }
 
+    /// External transitions used by `SSHConnectionManager`/`TerminalSessionRegistry`
+    /// when the underlying SSH client closes for the project. The session itself
+    /// transitions to `.connected` on first byte and to `.disconnected` when its
+    /// inbound stream ends naturally — this method covers the SSH-driven case.
+    func setStatus(_ newStatus: SessionStatus) {
+        if status != newStatus {
+            status = newStatus
+        }
+    }
+
     private func startPump() {
         let inbound = channel.inbound
         pumpTask = Task { @MainActor [weak self] in
@@ -82,14 +104,24 @@ final class TerminalSession {
                 if Task.isCancelled { break }
                 self?.handleInbound(chunk)
             }
+            self?.handlePumpEnded()
         }
     }
 
     private func handleInbound(_ data: Data) {
         if data.isEmpty { return }
+        if status == .connecting {
+            status = .connected
+        }
         let bytes = [UInt8](data)
         terminalView.feed(byteArray: ArraySlice(bytes))
         lastByteAt = Date()
+    }
+
+    private func handlePumpEnded() {
+        if isClosed { return }
+        if case .disconnected = status { return }
+        status = .disconnected(reason: "Shell channel closed.")
     }
 }
 

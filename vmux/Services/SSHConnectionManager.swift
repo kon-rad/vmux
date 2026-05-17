@@ -55,6 +55,7 @@ actor SSHConnectionManager {
     private let keychain: KeychainService
     private let connectTimeout: TimeAmount
     private var clients: [UUID: SSHClient] = [:]
+    private var onProjectDisconnect: (@Sendable (UUID) async -> Void)?
 
     init(
         keychain: KeychainService = KeychainService(),
@@ -62,6 +63,14 @@ actor SSHConnectionManager {
     ) {
         self.keychain = keychain
         self.connectTimeout = connectTimeout
+    }
+
+    /// Register a handler invoked whenever an SSH client closes unexpectedly.
+    /// `TerminalSessionRegistry` uses this to flip every terminal session whose
+    /// `projectID` matches into `.disconnected` so the UI can surface the
+    /// reconnect banner (T-024).
+    func setOnProjectDisconnect(_ handler: @escaping @Sendable (UUID) async -> Void) {
+        self.onProjectDisconnect = handler
     }
 
     func client(for info: SSHProjectInfo) async throws -> SSHClient {
@@ -118,6 +127,9 @@ actor SSHConnectionManager {
 
     private func handleDisconnect(projectID: UUID) {
         clients.removeValue(forKey: projectID)
+        if let handler = onProjectDisconnect {
+            Task { await handler(projectID) }
+        }
     }
 
     nonisolated static func makeAuthenticationMethod(

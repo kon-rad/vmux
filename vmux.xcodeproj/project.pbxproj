@@ -18,6 +18,7 @@
 		41660C88513570298A02BC25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE0EC05648D477D1739A6A01 /* Assets.xcassets */; };
 		52C5C4FD38D298E7DB423DFA /* SSHConnectionManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3E13E8E8FB2809FCFE86B6 /* SSHConnectionManagerTests.swift */; };
 		5A190596DED7EB8BF161D9A5 /* NewProjectSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A6C6E47A1384A5B0D69CCD /* NewProjectSheet.swift */; };
+		67966EB14B0B5EBB28D2773D /* SessionStatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFEC8025094BA4D9D693AD7 /* SessionStatusTests.swift */; };
 		6BA349DA568D7AC430DC6EAA /* KeychainServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F99EEF4D931FECE01EFBB9 /* KeychainServiceTests.swift */; };
 		765027C49D53BE3082C56287 /* TabStatusDot.swift in Sources */ = {isa = PBXBuildFile; fileRef = B314EDA45A0F4B68CCC17680 /* TabStatusDot.swift */; };
 		8AF632D8C218B518D7AE4D2B /* Citadel in Frameworks */ = {isa = PBXBuildFile; productRef = 3919FF17FB2FDC39C6D2E5AF /* Citadel */; };
@@ -49,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0FFEC8025094BA4D9D693AD7 /* SessionStatusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStatusTests.swift; sourceTree = "<group>"; };
 		14CA38E94DD5617CA901751F /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		1E199A4016A5A3D80DA2F613 /* vmux.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = vmux.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2184BC02AA6BF4A229B25755 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				E6B72783E3944F373A05497C /* ActivityMonitorTests.swift */,
 				E6F99EEF4D931FECE01EFBB9 /* KeychainServiceTests.swift */,
 				90663959B1DC13F503FB0435 /* ModelsTests.swift */,
+				0FFEC8025094BA4D9D693AD7 /* SessionStatusTests.swift */,
 				8C3E13E8E8FB2809FCFE86B6 /* SSHConnectionManagerTests.swift */,
 				D807D859C581E9DFE08E7F0C /* TabStatusDotTests.swift */,
 				509BCBFC05A7D3AC5D104A5B /* TerminalSessionTests.swift */,
@@ -298,6 +301,7 @@
 				6BA349DA568D7AC430DC6EAA /* KeychainServiceTests.swift in Sources */,
 				D9025D2CBEAB9BD3D3D80F1D /* ModelsTests.swift in Sources */,
 				52C5C4FD38D298E7DB423DFA /* SSHConnectionManagerTests.swift in Sources */,
+				67966EB14B0B5EBB28D2773D /* SessionStatusTests.swift in Sources */,
 				381E5ED03C06E313A2238866 /* TabStatusDotTests.swift in Sources */,
 				E3B713426383B460AEEE4B78 /* TerminalSessionTests.swift in Sources */,
 				9363377C08F3437508792EC8 /* vmuxTests.swift in Sources */,

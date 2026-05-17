@@ -3,11 +3,14 @@ import SwiftData
 
 enum TerminalSessionRegistryError: Error, CustomStringConvertible {
     case projectNotResolvable
+    case unknownTab
 
     var description: String {
         switch self {
         case .projectNotResolvable:
             return "Tab is not associated with a project."
+        case .unknownTab:
+            return "No session has ever been opened for this tab."
         }
     }
 }
@@ -20,9 +23,14 @@ enum TerminalSessionRegistryError: Error, CustomStringConvertible {
 final class TerminalSessionRegistry {
     static let shared = TerminalSessionRegistry()
 
-    private var sessions: [UUID: TerminalSession] = [:]
+    var sessions: [UUID: TerminalSession] = [:]
     private var inflight: [UUID: Task<TerminalSession, any Error>] = [:]
     private var monitors: [UUID: ActivityMonitor] = [:]
+    /// Stable references to the `Tab` model used to construct each session, so
+    /// `reconnect(tabID:)` (T-024) can rebuild without asking the caller for a
+    /// fresh fetch. Cleared in `remove(tabID:)` alongside the live session.
+    private var tabs: [UUID: Tab] = [:]
+    private var disconnectHandlerInstalled = false
 
     private let connectionManager: SSHConnectionManager
 
@@ -34,10 +42,31 @@ final class TerminalSessionRegistry {
         sessions[tabID]
     }
 
+    /// Mark every session bound to this project as disconnected. Invoked by
+    /// `SSHConnectionManager` when the underlying client closes (T-024).
+    func handleProjectDisconnect(projectID: UUID, reason: String = "SSH connection closed.") {
+        for (_, session) in sessions where session.projectID == projectID {
+            session.setStatus(.disconnected(reason: reason))
+        }
+    }
+
+    private func installDisconnectHandlerIfNeeded() async {
+        if disconnectHandlerInstalled { return }
+        disconnectHandlerInstalled = true
+        await connectionManager.setOnProjectDisconnect { @Sendable [weak self] projectID in
+            guard let self else { return }
+            await MainActor.run {
+                self.handleProjectDisconnect(projectID: projectID)
+            }
+        }
+    }
+
     /// Returns the existing session for this tab, or creates one by opening a
     /// PTY-backed shell on the project's shared SSH client.
     func session(for tab: Tab) async throws -> TerminalSession {
+        await installDisconnectHandlerIfNeeded()
         if let existing = sessions[tab.id] {
+            tabs[tab.id] = tab
             return existing
         }
         if let pending = inflight[tab.id] {
@@ -46,6 +75,7 @@ final class TerminalSessionRegistry {
         guard let project = tab.project else {
             throw TerminalSessionRegistryError.projectNotResolvable
         }
+        tabs[tab.id] = tab
         let info = SSHProjectInfo(project: project)
         let tabID = tab.id
         let projectID = project.id
@@ -87,6 +117,7 @@ final class TerminalSessionRegistry {
 
     /// Tear down a session and forget it. Called by sidebar tab deletion.
     func remove(tabID: UUID) async {
+        tabs.removeValue(forKey: tabID)
         if let task = inflight.removeValue(forKey: tabID) {
             task.cancel()
         }
@@ -95,5 +126,24 @@ final class TerminalSessionRegistry {
         }
         guard let session = sessions.removeValue(forKey: tabID) else { return }
         await session.close()
+    }
+
+    /// Tear down the existing (dead) session for this tab and open a fresh one
+    /// bound to the same `Tab`. Invoked by the disconnect banner's tap target
+    /// in `TerminalWindowView` (T-024).
+    func reconnect(tabID: UUID) async throws -> TerminalSession {
+        if let task = inflight.removeValue(forKey: tabID) {
+            task.cancel()
+        }
+        if let monitor = monitors.removeValue(forKey: tabID) {
+            monitor.stop()
+        }
+        if let session = sessions.removeValue(forKey: tabID) {
+            await session.close()
+        }
+        guard let tab = tabs[tabID] else {
+            throw TerminalSessionRegistryError.unknownTab
+        }
+        return try await session(for: tab)
     }
 }

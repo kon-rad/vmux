@@ -383,7 +383,7 @@ vmux/                              # Xcode project root
 
 ### Phase 5 — Robustness & docs
 
-- [ ] **T-024 — SSH disconnect / reconnect UX**
+- [x] **T-024 — SSH disconnect / reconnect UX**
   - **Why**: Servers drop. Sessions must recover gracefully.
   - **Do**: Add `enum SessionStatus { case connecting, connected, disconnected(reason: String) }` to `TerminalSession` as a published property. `SSHConnectionManager` flips all child sessions to `.disconnected` when the underlying client closes. `TerminalWindowView` observes status and, when `.disconnected`, overlays a banner "Disconnected — Reconnect" with a tap target. Tap calls `TerminalSessionRegistry.reconnect(tabID:)` which discards the dead session and creates a fresh one bound to the same `Tab`.
   - **Acceptance**: Kill the SSH server mid-session, banner appears in all affected terminal windows. Restart server, tap reconnect, terminal accepts input again. The same `Tab` row in the sidebar is reused.

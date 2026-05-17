@@ -44,6 +44,12 @@ struct TerminalWindowView: View {
         if let session {
             SwiftTermView(session: session)
                 .ignoresSafeArea(edges: .bottom)
+                .overlay(alignment: .top) {
+                    if case .disconnected(let reason) = session.status {
+                        disconnectBanner(reason: reason)
+                            .padding(.top, 12)
+                    }
+                }
         } else if let loadError {
             VStack(spacing: 12) {
                 Image(systemName: "exclamationmark.triangle")
@@ -94,6 +100,47 @@ struct TerminalWindowView: View {
         defer { isLoading = false }
         do {
             session = try await TerminalSessionRegistry.shared.session(for: tab)
+        } catch {
+            session = nil
+            loadError = String(describing: error)
+        }
+    }
+
+    private func disconnectBanner(reason: String) -> some View {
+        Button {
+            Task { await reconnect() }
+        } label: {
+            HStack(spacing: 12) {
+                Image(systemName: "wifi.exclamationmark")
+                    .font(.title3)
+                    .foregroundStyle(.orange)
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Disconnected — Reconnect")
+                        .font(.headline)
+                    Text(reason)
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
+                }
+                Spacer(minLength: 0)
+                Image(systemName: "arrow.clockwise")
+                    .font(.title3)
+            }
+            .padding(.horizontal, 16)
+            .padding(.vertical, 12)
+            .frame(maxWidth: 420)
+            .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 14))
+            .contentShape(RoundedRectangle(cornerRadius: 14))
+        }
+        .buttonStyle(.plain)
+    }
+
+    @MainActor
+    private func reconnect() async {
+        isLoading = true
+        defer { isLoading = false }
+        do {
+            session = try await TerminalSessionRegistry.shared.reconnect(tabID: tabID)
+            loadError = nil
         } catch {
             session = nil
             loadError = String(describing: error)
