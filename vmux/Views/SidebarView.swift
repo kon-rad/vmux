@@ -88,9 +88,10 @@ struct SidebarView: View {
                     openWindow(id: "terminal", value: tab.id)
                 } label: {
                     HStack {
-                        Circle()
-                            .fill(.gray)
-                            .frame(width: 8, height: 8)
+                        TabStatusDot(
+                            isRunning: tab.isRunning,
+                            lastActivityAt: tab.lastActivityAt
+                        )
                         Text(tab.title)
                         Spacer()
                     }

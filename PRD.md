@@ -304,7 +304,7 @@ vmux/                              # Xcode project root
   - **Acceptance**: With a tab open running `sleep 5 && echo done`, `isRunning` becomes true, then false ~3s after `done`. System sound audible. `lastActivityAt` updates while the command runs.
   - **Depends on**: T-011, T-012
 
-- [ ] **T-014 — Sidebar status dots**
+- [x] **T-014 — Sidebar status dots**
   - **Why**: Surface T-013's signal.
   - **Do**: In `SidebarView`'s tab list, render a dot: gray when `isRunning == false` and `Date.now - lastActivityAt > 5s`, amber when `isRunning == true`, green pulse for the first 5s after `isRunning` transitions true→false.
   - **Acceptance**: Visual: dots reflect state correctly during a sleep-then-echo command.
