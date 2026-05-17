@@ -266,7 +266,7 @@ vmux/                              # Xcode project root
   - **Acceptance**: With manually-inserted test data, sidebar shows projects + tabs. Settings button opens the settings window. The T-005 temp buttons are gone.
   - **Depends on**: T-004, T-005
 
-- [ ] **T-008 — NewProjectSheet**
+- [x] **T-008 — NewProjectSheet**
   - **Why**: Create projects.
   - **Do**: Sheet from sidebar `+ New Project`. Fields: name, host, port (default 22), username, auth picker (password / private key), secure input for the secret. On save: generate UUID `keychainRef`, store secret via `KeychainService`, insert `Project`.
   - **Acceptance**: Adding a project persists across app relaunch. Secret stored under `vmux/<keychainRef>` in Keychain. Form validates: name non-empty, host non-empty, port 1–65535.

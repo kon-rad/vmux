@@ -7,6 +7,7 @@ struct SidebarView: View {
     @Query(sort: \Project.createdAt) private var projects: [Project]
     @Query private var allTabs: [Tab]
     @State private var selectedProjectID: UUID?
+    @State private var showingNewProjectSheet = false
 
     private var selectedProject: Project? {
         projects.first { $0.id == selectedProjectID }
@@ -44,6 +45,9 @@ struct SidebarView: View {
             .padding()
         }
         .frame(minWidth: 340, minHeight: 640)
+        .sheet(isPresented: $showingNewProjectSheet) {
+            NewProjectSheet()
+        }
     }
 
     private var projectsSection: some View {
@@ -107,7 +111,9 @@ struct SidebarView: View {
         }
     }
 
-    private func addProject() {}
+    private func addProject() {
+        showingNewProjectSheet = true
+    }
 
     private func addTab(in project: Project) {
         _ = project
