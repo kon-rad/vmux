@@ -1,6 +1,6 @@
 name: vmux
 options:
-  bundleIdPrefix: com.vmux
+  bundleIdPrefix: com.konradgnat
   deploymentTarget:
     visionOS: "2.0"
   createIntermediateGroups: true
@@ -13,9 +13,9 @@ settings:
     SWIFT_UPCOMING_FEATURE_EXISTENTIAL_ANY: YES
     ENABLE_USER_SCRIPT_SANDBOXING: YES
     GENERATE_INFOPLIST_FILE: NO
-    DEVELOPMENT_TEAM: ""
+    DEVELOPMENT_TEAM: "DHB5JNF8ZW"
     CODE_SIGN_STYLE: Automatic
-    CODE_SIGNING_ALLOWED: NO
+    CODE_SIGNING_ALLOWED: YES
 packages:
   Citadel:
     url: https://github.com/orlandos-nl/Citadel
@@ -42,7 +42,7 @@ targets:
         product: SwiftTerm
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.vmux.app
+        PRODUCT_BUNDLE_IDENTIFIER: com.konradgnat.vmux
         PRODUCT_NAME: vmux
         INFOPLIST_FILE: vmux/Info.plist
         ENABLE_PREVIEWS: YES
@@ -62,7 +62,7 @@ targets:
       - target: vmux
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.vmux.app.tests
+        PRODUCT_BUNDLE_IDENTIFIER: com.konradgnat.vmux.tests
         SUPPORTED_PLATFORMS: "xros xrsimulator"
         TARGETED_DEVICE_FAMILY: "7"
         GENERATE_INFOPLIST_FILE: YES

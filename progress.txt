@@ -4,3 +4,5 @@ T-002
 T-002 VERIFY: pass — Package.resolved pins Citadel + SwiftTerm; vmux/SwiftPMImportCheck.swift references SSHClient + Terminal to prove both packages link.
 T-003
 T-003 VERIFY: pass — `plutil -lint vmux/Info.plist` returned OK; `NSMicrophoneUsageDescription` present with the PRD-specified copy; `NSSpeechRecognitionUsageDescription` correctly absent (Speech framework not used; Gemini Live replaces it).
+T-004
+T-004 VERIFY: pass — vmux/Models/{Project,Tab,AppSettings}.swift implement the §4.2 schemas; vmuxApp.swift wires ModelContainer + AppSettings.bootstrap; vmuxTests/ModelsTests.swift covers round-trip, cascade delete, and single-row bootstrap.

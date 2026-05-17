@@ -7,136 +7,165 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EE00000000000000000000E1 /* vmuxApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE00000000000000000000E0 /* vmuxApp.swift */; };
-		EE00000000000000000000E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE00000000000000000000E3 /* Assets.xcassets */; };
-		EE00000000000000000000E6 /* Preview Content in Resources */ = {isa = PBXBuildFile; fileRef = EE00000000000000000000E5 /* Preview Content */; };
-		EE00000000000000000000E8 /* vmuxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE00000000000000000000E7 /* vmuxTests.swift */; };
-		EE00000000000000000000E9 /* SwiftPMImportCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE00000000000000000000EA /* SwiftPMImportCheck.swift */; };
-		FF00000000000000000000F2 /* Citadel in Frameworks */ = {isa = PBXBuildFile; productRef = FF00000000000000000000F1 /* Citadel */; };
-		FF00000000000000000000F5 /* SwiftTerm in Frameworks */ = {isa = PBXBuildFile; productRef = FF00000000000000000000F4 /* SwiftTerm */; };
+		070B2DC41A10BB9E4D89B20C /* SwiftTerm in Frameworks */ = {isa = PBXBuildFile; productRef = 9154421B75395B16A10932B4 /* SwiftTerm */; };
+		11166ABB6E4E42A851CDF181 /* SwiftPMImportCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1CB298AC393794663C8525 /* SwiftPMImportCheck.swift */; };
+		1124A5F0FD5190BE4E2EDF55 /* vmuxApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8681C94185E3883E494962 /* vmuxApp.swift */; };
+		2E98139ECD0814C8888B1EB7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2184BC02AA6BF4A229B25755 /* Preview Assets.xcassets */; };
+		41660C88513570298A02BC25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE0EC05648D477D1739A6A01 /* Assets.xcassets */; };
+		8AF632D8C218B518D7AE4D2B /* Citadel in Frameworks */ = {isa = PBXBuildFile; productRef = 3919FF17FB2FDC39C6D2E5AF /* Citadel */; };
+		9363377C08F3437508792EC8 /* vmuxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFBA952DFD394BD983ED4D57 /* vmuxTests.swift */; };
+		AEF134B84D22F1D05A814B0B /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CDE242E62FCD506036C5CA /* Tab.swift */; };
+		B3B037259AE3D44A4A9ABF71 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CA38E94DD5617CA901751F /* AppSettings.swift */; };
+		C3BA751B18C8F0A7BE206E02 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C3914ED9062F3CA9C3AA6C /* Project.swift */; };
+		D9025D2CBEAB9BD3D3D80F1D /* ModelsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90663959B1DC13F503FB0435 /* ModelsTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		DD00000000000000000000D8 /* PBXContainerItemProxy */ = {
+		5813CBFDF67B3E3703F9FF2C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = AA00000000000000000000A0 /* Project object */;
+			containerPortal = 66F2CF8294D1481007ABA27C /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = CC00000000000000000000C0;
+			remoteGlobalIDString = 40601123755F6E4C2405A43E;
 			remoteInfo = vmux;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		CC00000000000000000000C7 /* vmux.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = vmux.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		DD00000000000000000000D6 /* vmuxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = vmuxTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		EE00000000000000000000E0 /* vmuxApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vmuxApp.swift; sourceTree = "<group>"; };
-		EE00000000000000000000E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EE00000000000000000000E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		EE00000000000000000000E5 /* Preview Content */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Preview Content"; sourceTree = "<group>"; };
-		EE00000000000000000000E7 /* vmuxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vmuxTests.swift; sourceTree = "<group>"; };
-		EE00000000000000000000EA /* SwiftPMImportCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftPMImportCheck.swift; sourceTree = "<group>"; };
+		14CA38E94DD5617CA901751F /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		1E199A4016A5A3D80DA2F613 /* vmux.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = vmux.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2184BC02AA6BF4A229B25755 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		42CDE242E62FCD506036C5CA /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
+		6C1CB298AC393794663C8525 /* SwiftPMImportCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftPMImportCheck.swift; sourceTree = "<group>"; };
+		7D8681C94185E3883E494962 /* vmuxApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vmuxApp.swift; sourceTree = "<group>"; };
+		90663959B1DC13F503FB0435 /* ModelsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelsTests.swift; sourceTree = "<group>"; };
+		95C3914ED9062F3CA9C3AA6C /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		AFBA952DFD394BD983ED4D57 /* vmuxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vmuxTests.swift; sourceTree = "<group>"; };
+		EE0EC05648D477D1739A6A01 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EF829441E64BA83D6A6341D6 /* vmuxTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = vmuxTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		CC00000000000000000000C6 /* Frameworks */ = {
+		71174264705A9AD061D3DE89 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FF00000000000000000000F2 /* Citadel in Frameworks */,
-				FF00000000000000000000F5 /* SwiftTerm in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DD00000000000000000000D5 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				8AF632D8C218B518D7AE4D2B /* Citadel in Frameworks */,
+				070B2DC41A10BB9E4D89B20C /* SwiftTerm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		BB00000000000000000000B0 /* Main */ = {
-			isa = PBXGroup;
-			children = (
-				BB00000000000000000000B2 /* vmux */,
-				BB00000000000000000000B3 /* vmuxTests */,
-				BB00000000000000000000B1 /* Products */,
-			);
-			sourceTree = "<group>";
-		};
-		BB00000000000000000000B1 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				CC00000000000000000000C7 /* vmux.app */,
-				DD00000000000000000000D6 /* vmuxTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		BB00000000000000000000B2 /* vmux */ = {
-			isa = PBXGroup;
-			children = (
-				EE00000000000000000000E0 /* vmuxApp.swift */,
-				EE00000000000000000000EA /* SwiftPMImportCheck.swift */,
-				BB00000000000000000000B4 /* Models */,
-				BB00000000000000000000B5 /* Services */,
-				BB00000000000000000000B6 /* Views */,
-				EE00000000000000000000E3 /* Assets.xcassets */,
-				EE00000000000000000000E5 /* Preview Content */,
-				EE00000000000000000000E2 /* Info.plist */,
-			);
-			path = vmux;
-			sourceTree = "<group>";
-		};
-		BB00000000000000000000B3 /* vmuxTests */ = {
-			isa = PBXGroup;
-			children = (
-				EE00000000000000000000E7 /* vmuxTests.swift */,
-			);
-			path = vmuxTests;
-			sourceTree = "<group>";
-		};
-		BB00000000000000000000B4 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		BB00000000000000000000B5 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
-		BB00000000000000000000B6 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				BB00000000000000000000B7 /* Components */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		BB00000000000000000000B7 /* Components */ = {
+		151C63A93EA8E53183CF2C44 /* Components */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			path = Components;
 			sourceTree = "<group>";
 		};
+		716238CFC48A0871CFF5550E /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		784F75FEB5E37ECBD342EB4C = {
+			isa = PBXGroup;
+			children = (
+				BB1329726FED9F0D0408F5B4 /* vmux */,
+				B903495ECCC86D1A5D0FA68A /* vmuxTests */,
+				FB302C16376DF081FC891909 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B903495ECCC86D1A5D0FA68A /* vmuxTests */ = {
+			isa = PBXGroup;
+			children = (
+				90663959B1DC13F503FB0435 /* ModelsTests.swift */,
+				AFBA952DFD394BD983ED4D57 /* vmuxTests.swift */,
+			);
+			path = vmuxTests;
+			sourceTree = "<group>";
+		};
+		BB1329726FED9F0D0408F5B4 /* vmux */ = {
+			isa = PBXGroup;
+			children = (
+				EBC4F1B6247967C1BE7A25DF /* Models */,
+				D5375B6FD7C598EC508793FC /* Preview Content */,
+				716238CFC48A0871CFF5550E /* Services */,
+				C8B0A21433352BE807A90E66 /* Views */,
+				EE0EC05648D477D1739A6A01 /* Assets.xcassets */,
+				6C1CB298AC393794663C8525 /* SwiftPMImportCheck.swift */,
+				7D8681C94185E3883E494962 /* vmuxApp.swift */,
+			);
+			path = vmux;
+			sourceTree = "<group>";
+		};
+		C8B0A21433352BE807A90E66 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				151C63A93EA8E53183CF2C44 /* Components */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D5375B6FD7C598EC508793FC /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				2184BC02AA6BF4A229B25755 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		EBC4F1B6247967C1BE7A25DF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				14CA38E94DD5617CA901751F /* AppSettings.swift */,
+				95C3914ED9062F3CA9C3AA6C /* Project.swift */,
+				42CDE242E62FCD506036C5CA /* Tab.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		FB302C16376DF081FC891909 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1E199A4016A5A3D80DA2F613 /* vmux.app */,
+				EF829441E64BA83D6A6341D6 /* vmuxTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CC00000000000000000000C0 /* vmux */ = {
+		2BE8373B91232BE3BBE6264E /* vmuxTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CC00000000000000000000C1 /* Build configuration list for PBXNativeTarget "vmux" */;
+			buildConfigurationList = 2FF17322D863E69FFB552F4F /* Build configuration list for PBXNativeTarget "vmuxTests" */;
 			buildPhases = (
-				CC00000000000000000000C4 /* Sources */,
-				CC00000000000000000000C6 /* Frameworks */,
-				CC00000000000000000000C5 /* Resources */,
+				2874D9517C13305F13FB0982 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				63C75B20096FF46A77199ABC /* PBXTargetDependency */,
+			);
+			name = vmuxTests;
+			packageProductDependencies = (
+			);
+			productName = vmuxTests;
+			productReference = EF829441E64BA83D6A6341D6 /* vmuxTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		40601123755F6E4C2405A43E /* vmux */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9CC314D114BFE4B9810FC139 /* Build configuration list for PBXNativeTarget "vmux" */;
+			buildPhases = (
+				C76AF4662B8597779B92E5D8 /* Sources */,
+				8297C1B8A36B4AB8EEB38A47 /* Resources */,
+				71174264705A9AD061D3DE89 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -144,116 +173,350 @@
 			);
 			name = vmux;
 			packageProductDependencies = (
-				FF00000000000000000000F1 /* Citadel */,
-				FF00000000000000000000F4 /* SwiftTerm */,
+				3919FF17FB2FDC39C6D2E5AF /* Citadel */,
+				9154421B75395B16A10932B4 /* SwiftTerm */,
 			);
 			productName = vmux;
-			productReference = CC00000000000000000000C7 /* vmux.app */;
+			productReference = 1E199A4016A5A3D80DA2F613 /* vmux.app */;
 			productType = "com.apple.product-type.application";
-		};
-		DD00000000000000000000D0 /* vmuxTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DD00000000000000000000D1 /* Build configuration list for PBXNativeTarget "vmuxTests" */;
-			buildPhases = (
-				DD00000000000000000000D4 /* Sources */,
-				DD00000000000000000000D5 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				DD00000000000000000000D7 /* PBXTargetDependency */,
-			);
-			name = vmuxTests;
-			productName = vmuxTests;
-			productReference = DD00000000000000000000D6 /* vmuxTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		AA00000000000000000000A0 /* Project object */ = {
+		66F2CF8294D1481007ABA27C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1600;
-				LastUpgradeCheck = 1600;
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
 				TargetAttributes = {
-					CC00000000000000000000C0 = {
-						CreatedOnToolsVersion = 16.0;
+					2BE8373B91232BE3BBE6264E = {
+						DevelopmentTeam = DHB5JNF8ZW;
+						ProvisioningStyle = Automatic;
 					};
-					DD00000000000000000000D0 = {
-						CreatedOnToolsVersion = 16.0;
-						TestTargetID = CC00000000000000000000C0;
+					40601123755F6E4C2405A43E = {
+						DevelopmentTeam = DHB5JNF8ZW;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = AA00000000000000000000A1 /* Build configuration list for PBXProject "vmux" */;
-			compatibilityVersion = "Xcode 15.0";
+			buildConfigurationList = 63E95BEC2F6AA07F946CAA03 /* Build configuration list for PBXProject "vmux" */;
+			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
+				en,
 			);
-			mainGroup = BB00000000000000000000B0;
+			mainGroup = 784F75FEB5E37ECBD342EB4C;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				FF00000000000000000000F0 /* XCRemoteSwiftPackageReference "Citadel" */,
-				FF00000000000000000000F3 /* XCRemoteSwiftPackageReference "SwiftTerm" */,
+				B67C067BF7E4BABA56E243A3 /* XCRemoteSwiftPackageReference "Citadel" */,
+				FB6900B38684923114272452 /* XCRemoteSwiftPackageReference "SwiftTerm" */,
 			);
 			preferredProjectObjectVersion = 77;
-			productRefGroup = BB00000000000000000000B1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CC00000000000000000000C0 /* vmux */,
-				DD00000000000000000000D0 /* vmuxTests */,
+				40601123755F6E4C2405A43E /* vmux */,
+				2BE8373B91232BE3BBE6264E /* vmuxTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		CC00000000000000000000C5 /* Resources */ = {
+		8297C1B8A36B4AB8EEB38A47 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE00000000000000000000E6 /* Preview Content in Resources */,
-				EE00000000000000000000E4 /* Assets.xcassets in Resources */,
+				41660C88513570298A02BC25 /* Assets.xcassets in Resources */,
+				2E98139ECD0814C8888B1EB7 /* Preview Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		CC00000000000000000000C4 /* Sources */ = {
+		2874D9517C13305F13FB0982 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE00000000000000000000E1 /* vmuxApp.swift in Sources */,
-				EE00000000000000000000E9 /* SwiftPMImportCheck.swift in Sources */,
+				D9025D2CBEAB9BD3D3D80F1D /* ModelsTests.swift in Sources */,
+				9363377C08F3437508792EC8 /* vmuxTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DD00000000000000000000D4 /* Sources */ = {
+		C76AF4662B8597779B92E5D8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE00000000000000000000E8 /* vmuxTests.swift in Sources */,
+				B3B037259AE3D44A4A9ABF71 /* AppSettings.swift in Sources */,
+				C3BA751B18C8F0A7BE206E02 /* Project.swift in Sources */,
+				11166ABB6E4E42A851CDF181 /* SwiftPMImportCheck.swift in Sources */,
+				AEF134B84D22F1D05A814B0B /* Tab.swift in Sources */,
+				1124A5F0FD5190BE4E2EDF55 /* vmuxApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		DD00000000000000000000D7 /* PBXTargetDependency */ = {
+		63C75B20096FF46A77199ABC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = CC00000000000000000000C0 /* vmux */;
-			targetProxy = DD00000000000000000000D8 /* PBXContainerItemProxy */;
+			target = 40601123755F6E4C2405A43E /* vmux */;
+			targetProxy = 5813CBFDF67B3E3703F9FF2C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
+/* Begin XCBuildConfiguration section */
+		13278078981D071D33679163 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.konradgnat.vmux.tests;
+				SDKROOT = xros;
+				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				TARGETED_DEVICE_FAMILY = 7;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/vmux.app/vmux";
+				XROS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		34323C04B34346FFE470BEEC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				DEVELOPMENT_ASSET_PATHS = "\"vmux/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = vmux/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.konradgnat.vmux;
+				PRODUCT_NAME = vmux;
+				SDKROOT = xros;
+				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = 7;
+				XROS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		717FDB652DAF1D282A285DAE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = DHB5JNF8ZW;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = xros;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_UPCOMING_FEATURE_EXISTENTIAL_ANY = YES;
+				SWIFT_VERSION = 6.0;
+				XROS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		83F11668AE7FDB7ACF655E5D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = DHB5JNF8ZW;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = xros;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_UPCOMING_FEATURE_EXISTENTIAL_ANY = YES;
+				SWIFT_VERSION = 6.0;
+				XROS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		BD50869AA90375F76EC86B98 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.konradgnat.vmux.tests;
+				SDKROOT = xros;
+				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				TARGETED_DEVICE_FAMILY = 7;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/vmux.app/vmux";
+				XROS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		E9302506A873A918FDE6B783 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				DEVELOPMENT_ASSET_PATHS = "\"vmux/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = vmux/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.konradgnat.vmux;
+				PRODUCT_NAME = vmux;
+				SDKROOT = xros;
+				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = 7;
+				XROS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2FF17322D863E69FFB552F4F /* Build configuration list for PBXNativeTarget "vmuxTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BD50869AA90375F76EC86B98 /* Debug */,
+				13278078981D071D33679163 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		63E95BEC2F6AA07F946CAA03 /* Build configuration list for PBXProject "vmux" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				717FDB652DAF1D282A285DAE /* Debug */,
+				83F11668AE7FDB7ACF655E5D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		9CC314D114BFE4B9810FC139 /* Build configuration list for PBXNativeTarget "vmux" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E9302506A873A918FDE6B783 /* Debug */,
+				34323C04B34346FFE470BEEC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
 /* Begin XCRemoteSwiftPackageReference section */
-		FF00000000000000000000F0 /* XCRemoteSwiftPackageReference "Citadel" */ = {
+		B67C067BF7E4BABA56E243A3 /* XCRemoteSwiftPackageReference "Citadel" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/orlandos-nl/Citadel";
 			requirement = {
@@ -261,7 +524,7 @@
 				minimumVersion = 0.9.2;
 			};
 		};
-		FF00000000000000000000F3 /* XCRemoteSwiftPackageReference "SwiftTerm" */ = {
+		FB6900B38684923114272452 /* XCRemoteSwiftPackageReference "SwiftTerm" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/migueldeicaza/SwiftTerm";
 			requirement = {
@@ -272,276 +535,17 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		FF00000000000000000000F1 /* Citadel */ = {
+		3919FF17FB2FDC39C6D2E5AF /* Citadel */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FF00000000000000000000F0 /* XCRemoteSwiftPackageReference "Citadel" */;
+			package = B67C067BF7E4BABA56E243A3 /* XCRemoteSwiftPackageReference "Citadel" */;
 			productName = Citadel;
 		};
-		FF00000000000000000000F4 /* SwiftTerm */ = {
+		9154421B75395B16A10932B4 /* SwiftTerm */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FF00000000000000000000F3 /* XCRemoteSwiftPackageReference "SwiftTerm" */;
+			package = FB6900B38684923114272452 /* XCRemoteSwiftPackageReference "SwiftTerm" */;
 			productName = SwiftTerm;
 		};
 /* End XCSwiftPackageProductDependency section */
-
-/* Begin XCBuildConfiguration section */
-		AA00000000000000000000A2 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGNING_ALLOWED = NO;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = xros;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_STRICT_CONCURRENCY = complete;
-				SWIFT_UPCOMING_FEATURE_EXISTENTIAL_ANY = YES;
-				SWIFT_VERSION = 6.0;
-				XROS_DEPLOYMENT_TARGET = 2.0;
-			};
-			name = Debug;
-		};
-		AA00000000000000000000A3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGNING_ALLOWED = NO;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				MTL_FAST_MATH = YES;
-				SDKROOT = xros;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_STRICT_CONCURRENCY = complete;
-				SWIFT_UPCOMING_FEATURE_EXISTENTIAL_ANY = YES;
-				SWIFT_VERSION = 6.0;
-				XROS_DEPLOYMENT_TARGET = 2.0;
-			};
-			name = Release;
-		};
-		CC00000000000000000000C2 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CODE_SIGNING_ALLOWED = NO;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"vmux/Preview Content\"";
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = vmux/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.vmux.app;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "xros xrsimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				TARGETED_DEVICE_FAMILY = 7;
-				XROS_DEPLOYMENT_TARGET = 2.0;
-			};
-			name = Debug;
-		};
-		CC00000000000000000000C3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CODE_SIGNING_ALLOWED = NO;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"vmux/Preview Content\"";
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = vmux/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.vmux.app;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "xros xrsimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				TARGETED_DEVICE_FAMILY = 7;
-				XROS_DEPLOYMENT_TARGET = 2.0;
-			};
-			name = Release;
-		};
-		DD00000000000000000000D2 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CODE_SIGNING_ALLOWED = NO;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.vmux.app.tests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "xros xrsimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				TARGETED_DEVICE_FAMILY = 7;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/vmux.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/vmux";
-				XROS_DEPLOYMENT_TARGET = 2.0;
-			};
-			name = Debug;
-		};
-		DD00000000000000000000D3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CODE_SIGNING_ALLOWED = NO;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.vmux.app.tests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "xros xrsimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				TARGETED_DEVICE_FAMILY = 7;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/vmux.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/vmux";
-				XROS_DEPLOYMENT_TARGET = 2.0;
-			};
-			name = Release;
-		};
-/* End XCBuildConfiguration section */
-
-/* Begin XCConfigurationList section */
-		AA00000000000000000000A1 /* Build configuration list for PBXProject "vmux" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				AA00000000000000000000A2 /* Debug */,
-				AA00000000000000000000A3 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		CC00000000000000000000C1 /* Build configuration list for PBXNativeTarget "vmux" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CC00000000000000000000C2 /* Debug */,
-				CC00000000000000000000C3 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		DD00000000000000000000D1 /* Build configuration list for PBXNativeTarget "vmuxTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DD00000000000000000000D2 /* Debug */,
-				DD00000000000000000000D3 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-/* End XCConfigurationList section */
 	};
-	rootObject = AA00000000000000000000A0 /* Project object */;
+	rootObject = 66F2CF8294D1481007ABA27C /* Project object */;
 }

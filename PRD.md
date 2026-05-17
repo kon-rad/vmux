@@ -222,7 +222,7 @@ vmux/                              # Xcode project root
 
 - [x] **T-001 — Create Xcode visionOS project**
   - **Why**: Need the project file to add code to.
-  - **Do**: Create `vmux.xcodeproj` in repo root. App target name `vmux`, bundle id `com.vmux.app`, platform `visionOS 2.0`, interface `SwiftUI`, lifecycle `SwiftUI App`, language `Swift 6`. Add test target `vmuxTests`.
+  - **Do**: Create `vmux.xcodeproj` in repo root. App target name `vmux`, bundle id **`com.konradgnat.vmux`**, platform `visionOS 2.0`, interface `SwiftUI`, lifecycle `SwiftUI App`, language `Swift 6`. Add test target `vmuxTests` (bundle id `com.konradgnat.vmux.tests`). Apple Development Team: **`DHB5JNF8ZW`** (Konrad Gnat). Codesign style: Automatic; `CODE_SIGNING_ALLOWED: YES`.
   - **Acceptance**: `xcodebuild -scheme vmux -destination 'platform=visionOS Simulator,name=Apple Vision Pro' build` succeeds. Project opens in Xcode without warnings.
   - **Depends on**: —
 
@@ -240,7 +240,7 @@ vmux/                              # Xcode project root
   - **Acceptance**: `plutil -lint vmux/Info.plist` passes. Mic string present. No Speech framework string.
   - **Depends on**: T-001
 
-- [ ] **T-004 — SwiftData models + container**
+- [x] **T-004 — SwiftData models + container**
   - **Why**: Persistence layer for projects/tabs/settings.
   - **Do**: Implement `Project`, `Tab`, `AppSettings` per §4.2. Wire `ModelContainer(for: Project.self, Tab.self, AppSettings.self)` in `vmuxApp` via `.modelContainer(...)`. On first launch create a single `AppSettings` row with defaults (`displayName = ""`, `idleThresholdSeconds = 3`).
   - **Acceptance**: Unit test creates a Project + Tab in an in-memory container, fetches them back, asserts cascade-delete removes child tabs. App launch creates exactly one `AppSettings` row.
