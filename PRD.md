@@ -286,7 +286,7 @@ vmux/                              # Xcode project root
   - **Acceptance**: Integration test (skippable without `VMUX_TEST_HOST` env) connects to a local SSH server, runs `echo ok`, gets "ok". Manual: connecting to a known server from the app does not throw.
   - **Depends on**: T-002, T-008
 
-- [ ] **T-011 — TerminalSession**
+- [x] **T-011 — TerminalSession**
   - **Why**: Bridge SSH bytes ↔ terminal emulator.
   - **Do**: Class owning one Citadel shell channel and one `SwiftTerm.Terminal`. Forward shell output bytes into `terminal.feed(...)`. Forward user input from terminal into shell. Expose `send(_ data: Data)` for the speech coordinator. Publish `lastByteAt: Date` on every received chunk.
   - **Acceptance**: Unit test: feed bytes into a stubbed channel, assert terminal buffer contains them; calling `send` writes bytes to the stub.
